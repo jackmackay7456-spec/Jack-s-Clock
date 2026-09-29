@@ -1,0 +1,1081 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Clock</title>
+  <meta name="theme-color" content="#000000">
+  <meta name="color-scheme" content="dark">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-title" content="Clock">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <link rel="manifest" href="./manifest.webmanifest">
+  <link rel="apple-touch-icon" href="./Icons/apple-touch-icon.png">
+  <link rel="icon" type="image/png" href="./Icons/icon-192.png">
+  <style>
+    @font-face {
+      font-family: "Anthropic Sans";
+      src: url("./Fonts/AnthropicSans-Text-Regular-Static.otf") format("opentype");
+      font-weight: 400;
+      font-style: normal;
+      font-display: swap;
+    }
+    @font-face { font-family: "ClockFont000"; src: url("./Fonts/Ac437_Acer710_CGA-2y.ttf") format("truetype"); font-weight: 400; font-style: normal; font-display: swap; }
+    @font-face { font-family: "ClockFont001"; src: url("./Fonts/Ac437_Acer710_CGA.ttf") format("truetype"); font-weight: 400; font-style: normal; font-display: swap; }
+    @font-face { font-family: "ClockFont002"; src: url("./Fonts/Ac437_Acer710_Mono.ttf") format("truetype"); font-weight: 400; font-style: normal; font-display: swap; }
+    @font-face { font-family: "ClockFont003"; src: url("./Fonts/Ac437_Acer_VGA_8x8-2y.ttf") format("truetype"); font-weight: 400; font-style: normal; font-display: swap; }
+    @font-face { font-family: "ClockFont004"; src: url("./Fonts/Ac437_Acer_VGA_8x8.ttf") format("truetype"); font-weight: 400; font-style: normal; font-display: swap; }
+    @font-face { font-family: "ClockFont005"; src: url("./Fonts/Ac437_Acer_VGA_9x8.ttf") format("truetype"); font-weight: 400; font-style: normal; font-display: swap; }
+    @font-face { font-family: "ClockFont006"; src: url("./Fonts/Ac437_ACM_VGA_8x14.ttf") format("truetype"); font-weight: 400; font-style: normal; font-display: swap; }
+    @font-face { font-family: "ClockFont007"; src: url("./Fonts/Ac437_ACM_VGA_8x16.ttf") format("truetype"); font-weight: 400; font-style: normal; font-display: swap; }
+    @font-face { font-family: "ClockFont008"; src: url("./Fonts/Ac437_ACM_VGA_8x8.ttf") format("truetype"); font-weight: 400; font-style: normal; font-display: swap; }
+    @font-face { font-family: "ClockFont009"; src: url("./Fonts/Ac437_ACM_VGA_9x14.ttf") format("truetype"); font-weight: 400; font-style: normal; font-display: swap; }
+    @font-face { font-family: "ClockFont010"; src: url("./Fonts/Ac437_ACM_VGA_9x16.ttf") format("truetype"); font-weight: 400; font-style: normal; font-display: swap; }
+    @font-face { font-family: "ClockFont011"; src: url("./Fonts/Ac437_ACM_VGA_9x8.ttf") format("truetype"); font-weight: 400; font-style: normal; font-display: swap; }
+    @font-face { font-family: "ClockFont012"; src: url("./Fonts/Ac437_AMI_EGA_8x14.ttf") format("truetype"); font-weight: 400; font-style: normal; font-display: swap; }
+    @font-face { font-family: "ClockFont013"; src: url("./Fonts/Ac437_AMI_EGA_8x8-2y.ttf") format("truetype"); font-weight: 400; font-style: normal; font-display: swap; }
+    @font-face { font-family: "ClockFont014"; src: url("./Fonts/Ac437_AMI_EGA_8x8.ttf") format("truetype"); font-weight: 400; font-style: normal; font-display: swap; }
+    @font-face { font-family: "ClockFont015"; src: url("./Fonts/Ac437_AMI_EGA_9x14.ttf") format("truetype"); font-weight: 400; font-style: normal; font-display: swap; }
+    @font-face { font-family: "ClockFont016"; src: url("./Fonts/Ac437_Amstrad_PC-2y.ttf") format("truetype"); font-weight: 400; font-style: normal; font-display: swap; }
+    @font-face { font-family: "ClockFont017"; src: url("./Fonts/Ac437_Amstrad_PC.ttf") format("truetype"); font-weight: 400; font-style: normal; font-display: swap; }
+    @font-face { font-family: "ClockFont018"; src: url("./Fonts/Ac437_Apricot_200L-2y.ttf") format("truetype"); font-weight: 400; font-style: normal; font-display: swap; }
+    @font-face { font-family: "ClockFont019"; src: url("./Fonts/Ac437_Apricot_200L.ttf") format("truetype"); font-weight: 400; font-style: normal; font-display: swap; }
+    @font-face { font-family: "ClockFont020"; src: url("./Fonts/Ac437_Apricot_Mono.ttf") format("truetype"); font-weight: 400; font-style: normal; font-display: swap; }
+    @font-face { font-family: "ClockFont021"; src: url("./Fonts/Ac437_ApricotPortable.ttf") format("truetype"); font-weight: 400; font-style: normal; font-display: swap; }
+    @font-face { font-family: "ClockFont022"; src: url("./Fonts/Ac437_ApricotXenC.ttf") format("truetype"); font-weight: 400; font-style: normal; font-display: swap; }
+    @font-face { font-family: "ClockFont023"; src: url("./Fonts/Ac437_ATI_8x14.ttf") format("truetype"); font-weight: 400; font-style: normal; font-display: swap; }
+    @font-face { font-family: "ClockFont024"; src: url("./Fonts/Ac437_ATI_8x16.ttf") format("truetype"); font-weight: 400; font-style: normal; font-display: swap; }
+    @font-face { font-family: "ClockFont025"; src: url("./Fonts/Ac437_ATI_8x8-2y.ttf") format("truetype"); font-weight: 400; font-style: normal; font-display: swap; }
+    @font-face { font-family: "ClockFont026"; src: url("./Fonts/Ac437_ATI_8x8.ttf") format("truetype"); font-weight: 400; font-style: normal; font-display: swap; }
+    @font-face { font-family: "ClockFont027"; src: url("./Fonts/Ac437_ATI_9x14.ttf") format("truetype"); font-weight: 400; font-style: normal; font-display: swap; }
+    @font-face { font-family: "ClockFont028"; src: url("./Fonts/Ac437_ATI_9x16.ttf") format("truetype"); font-weight: 400; font-style: normal; font-display: swap; }
+    @font-face { font-family: "ClockFont029"; src: url("./Fonts/Ac437_ATI_9x8.ttf") format("truetype"); font-weight: 400; font-style: normal; font-display: swap; }
+    @font-face { font-family: "ClockFont030"; src: url("./Fonts/Ac437_ATI_SmallW_6x8.ttf") format("truetype"); font-weight: 400; font-style: normal; font-display: swap; }
+    @font-face { font-family: "ClockFont031"; src: url("./Fonts/Ac437_ATT_PC6300-2x.ttf") format("truetype"); font-weight: 400; font-style: normal; font-display: swap; }
+    @font-face { font-family: "ClockFont032"; src: url("./Fonts/Ac437_ATT_PC6300.ttf") format("truetype"); font-weight: 400; font-style: normal; font-display: swap; }
+    @font-face { font-family: "ClockFont033"; src: url("./Fonts/Ac437_CL_EagleII_8x16.ttf") format("truetype"); font-weight: 400; font-style: normal; font-display: swap; }
+    @font-face { font-family: "ClockFont034"; src: url("./Fonts/Ac437_CL_EagleII_9x16.ttf") format("truetype"); font-weight: 400; font-style: normal; font-display: swap; }
+    @font-face { font-family: "ClockFont035"; src: url("./Fonts/Ac437_CL_EagleIII_8x16.ttf") format("truetype"); font-weight: 400; font-style: normal; font-display: swap; }
+    @font-face { font-family: "ClockFont036"; src: url("./Fonts/Ac437_CL_EagleIII_9x16.ttf") format("truetype"); font-weight: 400; font-style: normal; font-display: swap; }
+    @font-face { font-family: "ClockFont037"; src: url("./Fonts/Ac437_CompaqThin_8x14.ttf") format("truetype"); font-weight: 400; font-style: normal; font-display: swap; }
+    @font-face { font-family: "ClockFont038"; src: url("./Fonts/Ac437_CompaqThin_8x16.ttf") format("truetype"); font-weight: 400; font-style: normal; font-display: swap; }
+    @font-face { font-family: "ClockFont039"; src: url("./Fonts/Ac437_CompaqThin_8x8.ttf") format("truetype"); font-weight: 400; font-style: normal; font-display: swap; }
+    @font-face { font-family: "ClockFont040"; src: url("./Fonts/Ac437_Compis.ttf") format("truetype"); font-weight: 400; font-style: normal; font-display: swap; }
+    @font-face { font-family: "ClockFont041"; src: url("./Fonts/Ac437_Copam_BIOS-2y.ttf") format("truetype"); font-weight: 400; font-style: normal; font-display: swap; }
+    @font-face { font-family: "ClockFont042"; src: url("./Fonts/Ac437_Copam_BIOS.ttf") format("truetype"); font-weight: 400; font-style: normal; font-display: swap; }
+    @font-face { font-family: "ClockFont043"; src: url("./Fonts/Ac437_Cordata_PPC-21.ttf") format("truetype"); font-weight: 400; font-style: normal; font-display: swap; }
+    @font-face { font-family: "ClockFont044"; src: url("./Fonts/Ac437_Cordata_PPC-400.ttf") format("truetype"); font-weight: 400; font-style: normal; font-display: swap; }
+    @font-face { font-family: "ClockFont045"; src: url("./Fonts/Ac437_DG_One-2y.ttf") format("truetype"); font-weight: 400; font-style: normal; font-display: swap; }
+    @font-face { font-family: "ClockFont046"; src: url("./Fonts/Ac437_DG_One-2y_bold.ttf") format("truetype"); font-weight: 400; font-style: normal; font-display: swap; }
+    @font-face { font-family: "ClockFont047"; src: url("./Fonts/Ac437_DG_One.ttf") format("truetype"); font-weight: 400; font-style: normal; font-display: swap; }
+    @font-face { font-family: "ClockFont048"; src: url("./Fonts/Ac437_DG_One_bold.ttf") format("truetype"); font-weight: 400; font-style: normal; font-display: swap; }
+    @font-face { font-family: "ClockFont049"; src: url("./Fonts/Ac437_DTK_BIOS-2y.ttf") format("truetype"); font-weight: 400; font-style: normal; font-display: swap; }
+    @font-face { font-family: "ClockFont050"; src: url("./Fonts/Ac437_DTK_BIOS.ttf") format("truetype"); font-weight: 400; font-style: normal; font-display: swap; }
+    @font-face { font-family: "ClockFont051"; src: url("./Fonts/Ac437_EagleSpCGA_Alt1-2y.ttf") format("truetype"); font-weight: 400; font-style: normal; font-display: swap; }
+    @font-face { font-family: "ClockFont052"; src: url("./Fonts/Ac437_EagleSpCGA_Alt1.ttf") format("truetype"); font-weight: 400; font-style: normal; font-display: swap; }
+    @font-face { font-family: "ClockFont053"; src: url("./Fonts/Ac437_EagleSpCGA_Alt2-2y.ttf") format("truetype"); font-weight: 400; font-style: normal; font-display: swap; }
+    @font-face { font-family: "ClockFont054"; src: url("./Fonts/Ac437_EagleSpCGA_Alt2.ttf") format("truetype"); font-weight: 400; font-style: normal; font-display: swap; }
+    @font-face { font-family: "ClockFont055"; src: url("./Fonts/Ac437_EagleSpCGA_Alt3-2y.ttf") format("truetype"); font-weight: 400; font-style: normal; font-display: swap; }
+    @font-face { font-family: "ClockFont056"; src: url("./Fonts/Ac437_EagleSpCGA_Alt3.ttf") format("truetype"); font-weight: 400; font-style: normal; font-display: swap; }
+    @font-face { font-family: "ClockFont057"; src: url("./Fonts/Ac437_EpsonMGA-2y.ttf") format("truetype"); font-weight: 400; font-style: normal; font-display: swap; }
+    @font-face { font-family: "ClockFont058"; src: url("./Fonts/Ac437_EpsonMGA.ttf") format("truetype"); font-weight: 400; font-style: normal; font-display: swap; }
+    @font-face { font-family: "ClockFont059"; src: url("./Fonts/Ac437_EpsonMGA_Alt-2y.ttf") format("truetype"); font-weight: 400; font-style: normal; font-display: swap; }
+    @font-face { font-family: "ClockFont060"; src: url("./Fonts/Ac437_EpsonMGA_Alt.ttf") format("truetype"); font-weight: 400; font-style: normal; font-display: swap; }
+    @font-face { font-family: "ClockFont061"; src: url("./Fonts/Ac437_EpsonMGA_Mono.ttf") format("truetype"); font-weight: 400; font-style: normal; font-display: swap; }
+    @font-face { font-family: "ClockFont062"; src: url("./Fonts/Ac437_EuroPC_CGA-2y.ttf") format("truetype"); font-weight: 400; font-style: normal; font-display: swap; }
+    @font-face { font-family: "ClockFont063"; src: url("./Fonts/Ac437_EuroPC_CGA.ttf") format("truetype"); font-weight: 400; font-style: normal; font-display: swap; }
+    @font-face { font-family: "ClockFont064"; src: url("./Fonts/Ac437_EuroPC_Mono.ttf") format("truetype"); font-weight: 400; font-style: normal; font-display: swap; }
+    @font-face { font-family: "ClockFont065"; src: url("./Fonts/Ac437_EverexME_5x8.ttf") format("truetype"); font-weight: 400; font-style: normal; font-display: swap; }
+    @font-face { font-family: "ClockFont066"; src: url("./Fonts/Ac437_EverexME_7x8.ttf") format("truetype"); font-weight: 400; font-style: normal; font-display: swap; }
+    @font-face { font-family: "ClockFont067"; src: url("./Fonts/Ac437_HP_150_re.ttf") format("truetype"); font-weight: 400; font-style: normal; font-display: swap; }
+    @font-face { font-family: "ClockFont068"; src: url("./Fonts/Ac437_IBM_3270pc.ttf") format("truetype"); font-weight: 400; font-style: normal; font-display: swap; }
+    @font-face { font-family: "ClockFont069"; src: url("./Fonts/Ac437_IBM_BIOS-2x.ttf") format("truetype"); font-weight: 400; font-style: normal; font-display: swap; }
+    @font-face { font-family: "ClockFont070"; src: url("./Fonts/Ac437_IBM_BIOS-2y.ttf") format("truetype"); font-weight: 400; font-style: normal; font-display: swap; }
+    @font-face { font-family: "ClockFont071"; src: url("./Fonts/Ac437_IBM_BIOS.ttf") format("truetype"); font-weight: 400; font-style: normal; font-display: swap; }
+    @font-face { font-family: "ClockFont072"; src: url("./Fonts/Ac437_IBM_CGA-2y.ttf") format("truetype"); font-weight: 400; font-style: normal; font-display: swap; }
+    @font-face { font-family: "ClockFont073"; src: url("./Fonts/Ac437_IBM_CGA.ttf") format("truetype"); font-weight: 400; font-style: normal; font-display: swap; }
+    @font-face { font-family: "ClockFont074"; src: url("./Fonts/Ac437_IBM_CGAthin-2y.ttf") format("truetype"); font-weight: 400; font-style: normal; font-display: swap; }
+    @font-face { font-family: "ClockFont075"; src: url("./Fonts/Ac437_IBM_CGAthin.ttf") format("truetype"); font-weight: 400; font-style: normal; font-display: swap; }
+    @font-face { font-family: "ClockFont076"; src: url("./Fonts/Ac437_IBM_Conv-2x.ttf") format("truetype"); font-weight: 400; font-style: normal; font-display: swap; }
+    @font-face { font-family: "ClockFont077"; src: url("./Fonts/Ac437_IBM_Conv-2y.ttf") format("truetype"); font-weight: 400; font-style: normal; font-display: swap; }
+    @font-face { font-family: "ClockFont078"; src: url("./Fonts/Ac437_IBM_Conv.ttf") format("truetype"); font-weight: 400; font-style: normal; font-display: swap; }
+    @font-face { font-family: "ClockFont079"; src: url("./Fonts/Ac437_IBM_DOS_ISO8-2x.ttf") format("truetype"); font-weight: 400; font-style: normal; font-display: swap; }
+    @font-face { font-family: "ClockFont080"; src: url("./Fonts/Ac437_IBM_DOS_ISO8.ttf") format("truetype"); font-weight: 400; font-style: normal; font-display: swap; }
+    @font-face { font-family: "ClockFont081"; src: url("./Fonts/Ac437_IBM_DOS_ISO9-2x.ttf") format("truetype"); font-weight: 400; font-style: normal; font-display: swap; }
+    @font-face { font-family: "ClockFont082"; src: url("./Fonts/Ac437_IBM_DOS_ISO9.ttf") format("truetype"); font-weight: 400; font-style: normal; font-display: swap; }
+    @font-face { font-family: "ClockFont083"; src: url("./Fonts/Ac437_IBM_EGA_8x14-2x.ttf") format("truetype"); font-weight: 400; font-style: normal; font-display: swap; }
+    @font-face { font-family: "ClockFont084"; src: url("./Fonts/Ac437_IBM_EGA_8x14.ttf") format("truetype"); font-weight: 400; font-style: normal; font-display: swap; }
+    @font-face { font-family: "ClockFont085"; src: url("./Fonts/Ac437_IBM_EGA_8x8-2x.ttf") format("truetype"); font-weight: 400; font-style: normal; font-display: swap; }
+    @font-face { font-family: "ClockFont086"; src: url("./Fonts/Ac437_IBM_EGA_8x8.ttf") format("truetype"); font-weight: 400; font-style: normal; font-display: swap; }
+    @font-face { font-family: "ClockFont087"; src: url("./Fonts/Ac437_IBM_EGA_9x14-2x.ttf") format("truetype"); font-weight: 400; font-style: normal; font-display: swap; }
+    @font-face { font-family: "ClockFont088"; src: url("./Fonts/Ac437_IBM_EGA_9x14.ttf") format("truetype"); font-weight: 400; font-style: normal; font-display: swap; }
+    @font-face { font-family: "ClockFont089"; src: url("./Fonts/Ac437_IBM_EGA_9x8-2x.ttf") format("truetype"); font-weight: 400; font-style: normal; font-display: swap; }
+    @font-face { font-family: "ClockFont090"; src: url("./Fonts/Ac437_IBM_EGA_9x8.ttf") format("truetype"); font-weight: 400; font-style: normal; font-display: swap; }
+    @font-face { font-family: "ClockFont091"; src: url("./Fonts/Ac437_IBM_MDA.ttf") format("truetype"); font-weight: 400; font-style: normal; font-display: swap; }
+    @font-face { font-family: "ClockFont092"; src: url("./Fonts/Ac437_IBM_Model30r0-2x.ttf") format("truetype"); font-weight: 400; font-style: normal; font-display: swap; }
+    @font-face { font-family: "ClockFont093"; src: url("./Fonts/Ac437_IBM_Model30r0.ttf") format("truetype"); font-weight: 400; font-style: normal; font-display: swap; }
+    @font-face { font-family: "ClockFont094"; src: url("./Fonts/Ac437_IBM_Model3x_Alt1.ttf") format("truetype"); font-weight: 400; font-style: normal; font-display: swap; }
+    @font-face { font-family: "ClockFont095"; src: url("./Fonts/Ac437_IBM_Model3x_Alt2.ttf") format("truetype"); font-weight: 400; font-style: normal; font-display: swap; }
+    @font-face { font-family: "ClockFont096"; src: url("./Fonts/Ac437_IBM_Model3x_Alt3.ttf") format("truetype"); font-weight: 400; font-style: normal; font-display: swap; }
+    @font-face { font-family: "ClockFont097"; src: url("./Fonts/Ac437_IBM_Model3x_Alt4.ttf") format("truetype"); font-weight: 400; font-style: normal; font-display: swap; }
+    @font-face { font-family: "ClockFont098"; src: url("./Fonts/Ac437_IBM_PGC-2x.ttf") format("truetype"); font-weight: 400; font-style: normal; font-display: swap; }
+    @font-face { font-family: "ClockFont099"; src: url("./Fonts/Ac437_IBM_PGC.ttf") format("truetype"); font-weight: 400; font-style: normal; font-display: swap; }
+    @font-face { font-family: "ClockFont100"; src: url("./Fonts/Ac437_IBM_VGA_8x14-2x.ttf") format("truetype"); font-weight: 400; font-style: normal; font-display: swap; }
+    @font-face { font-family: "ClockFont101"; src: url("./Fonts/Ac437_IBM_VGA_8x14.ttf") format("truetype"); font-weight: 400; font-style: normal; font-display: swap; }
+    @font-face { font-family: "ClockFont102"; src: url("./Fonts/Ac437_IBM_VGA_8x16-2x.ttf") format("truetype"); font-weight: 400; font-style: normal; font-display: swap; }
+    @font-face { font-family: "ClockFont103"; src: url("./Fonts/Ac437_IBM_VGA_8x16.ttf") format("truetype"); font-weight: 400; font-style: normal; font-display: swap; }
+    @font-face { font-family: "ClockFont104"; src: url("./Fonts/Ac437_IBM_VGA_9x14-2x.ttf") format("truetype"); font-weight: 400; font-style: normal; font-display: swap; }
+    @font-face { font-family: "ClockFont105"; src: url("./Fonts/Ac437_IBM_VGA_9x14.ttf") format("truetype"); font-weight: 400; font-style: normal; font-display: swap; }
+    @font-face { font-family: "ClockFont106"; src: url("./Fonts/Ac437_IBM_VGA_9x16-2x.ttf") format("truetype"); font-weight: 400; font-style: normal; font-display: swap; }
+    @font-face { font-family: "ClockFont107"; src: url("./Fonts/Ac437_IBM_VGA_9x16.ttf") format("truetype"); font-weight: 400; font-style: normal; font-display: swap; }
+    @font-face { font-family: "ClockFont108"; src: url("./Fonts/Ac437_IBM_VGA_9x8-2x.ttf") format("truetype"); font-weight: 400; font-style: normal; font-display: swap; }
+    @font-face { font-family: "ClockFont109"; src: url("./Fonts/Ac437_IBM_VGA_9x8.ttf") format("truetype"); font-weight: 400; font-style: normal; font-display: swap; }
+    @font-face { font-family: "ClockFont110"; src: url("./Fonts/Ac437_IGS_VGA_8x16.ttf") format("truetype"); font-weight: 400; font-style: normal; font-display: swap; }
+    @font-face { font-family: "ClockFont111"; src: url("./Fonts/Ac437_IGS_VGA_9x16.ttf") format("truetype"); font-weight: 400; font-style: normal; font-display: swap; }
+    @font-face { font-family: "ClockFont112"; src: url("./Fonts/Ac437_ITT_Xtra-2y.ttf") format("truetype"); font-weight: 400; font-style: normal; font-display: swap; }
+    @font-face { font-family: "ClockFont113"; src: url("./Fonts/Ac437_ITT_Xtra.ttf") format("truetype"); font-weight: 400; font-style: normal; font-display: swap; }
+    @font-face { font-family: "ClockFont114"; src: url("./Fonts/Ac437_Kaypro2K_G-2y.ttf") format("truetype"); font-weight: 400; font-style: normal; font-display: swap; }
+    @font-face { font-family: "ClockFont115"; src: url("./Fonts/Ac437_Kaypro2K_G.ttf") format("truetype"); font-weight: 400; font-style: normal; font-display: swap; }
+    @font-face { font-family: "ClockFont116"; src: url("./Fonts/Ac437_LE_Model_D_CGA-2y.ttf") format("truetype"); font-weight: 400; font-style: normal; font-display: swap; }
+    @font-face { font-family: "ClockFont117"; src: url("./Fonts/Ac437_LE_Model_D_CGA.ttf") format("truetype"); font-weight: 400; font-style: normal; font-display: swap; }
+    @font-face { font-family: "ClockFont118"; src: url("./Fonts/Ac437_LE_Model_D_Mono.ttf") format("truetype"); font-weight: 400; font-style: normal; font-display: swap; }
+    @font-face { font-family: "ClockFont119"; src: url("./Fonts/Ac437_MBytePC230_8x16.ttf") format("truetype"); font-weight: 400; font-style: normal; font-display: swap; }
+    @font-face { font-family: "ClockFont120"; src: url("./Fonts/Ac437_MBytePC230_CGA-2y.ttf") format("truetype"); font-weight: 400; font-style: normal; font-display: swap; }
+    @font-face { font-family: "ClockFont121"; src: url("./Fonts/Ac437_MBytePC230_CGA.ttf") format("truetype"); font-weight: 400; font-style: normal; font-display: swap; }
+    @font-face { font-family: "ClockFont122"; src: url("./Fonts/Ac437_MBytePC230_EGA.ttf") format("truetype"); font-weight: 400; font-style: normal; font-display: swap; }
+    @font-face { font-family: "ClockFont123"; src: url("./Fonts/Ac437_MBytePC230_Mono.ttf") format("truetype"); font-weight: 400; font-style: normal; font-display: swap; }
+    @font-face { font-family: "ClockFont124"; src: url("./Fonts/Ac437_Mindset-2x.ttf") format("truetype"); font-weight: 400; font-style: normal; font-display: swap; }
+    @font-face { font-family: "ClockFont125"; src: url("./Fonts/Ac437_Mindset-2y.ttf") format("truetype"); font-weight: 400; font-style: normal; font-display: swap; }
+    @font-face { font-family: "ClockFont126"; src: url("./Fonts/Ac437_Mindset.ttf") format("truetype"); font-weight: 400; font-style: normal; font-display: swap; }
+    @font-face { font-family: "ClockFont127"; src: url("./Fonts/Ac437_NEC_APC3_8x16-2x.ttf") format("truetype"); font-weight: 400; font-style: normal; font-display: swap; }
+    @font-face { font-family: "ClockFont128"; src: url("./Fonts/Ac437_NEC_APC3_8x16.ttf") format("truetype"); font-weight: 400; font-style: normal; font-display: swap; }
+    @font-face { font-family: "ClockFont129"; src: url("./Fonts/Ac437_NEC_APC3_8x8-2y.ttf") format("truetype"); font-weight: 400; font-style: normal; font-display: swap; }
+    @font-face { font-family: "ClockFont130"; src: url("./Fonts/Ac437_NEC_APC3_8x8.ttf") format("truetype"); font-weight: 400; font-style: normal; font-display: swap; }
+    @font-face { font-family: "ClockFont131"; src: url("./Fonts/Ac437_NEC_MultiSpeed-2x.ttf") format("truetype"); font-weight: 400; font-style: normal; font-display: swap; }
+    @font-face { font-family: "ClockFont132"; src: url("./Fonts/Ac437_NEC_MultiSpeed-2x_bold.ttf") format("truetype"); font-weight: 400; font-style: normal; font-display: swap; }
+    @font-face { font-family: "ClockFont133"; src: url("./Fonts/Ac437_NEC_MultiSpeed.ttf") format("truetype"); font-weight: 400; font-style: normal; font-display: swap; }
+    @font-face { font-family: "ClockFont134"; src: url("./Fonts/Ac437_NEC_MultiSpeed_bold.ttf") format("truetype"); font-weight: 400; font-style: normal; font-display: swap; }
+    @font-face { font-family: "ClockFont135"; src: url("./Fonts/Ac437_Nix8810_M15.ttf") format("truetype"); font-weight: 400; font-style: normal; font-display: swap; }
+    @font-face { font-family: "ClockFont136"; src: url("./Fonts/Ac437_Nix8810_M16.ttf") format("truetype"); font-weight: 400; font-style: normal; font-display: swap; }
+    @font-face { font-family: "ClockFont137"; src: url("./Fonts/Ac437_Nix8810_M35-2y.ttf") format("truetype"); font-weight: 400; font-style: normal; font-display: swap; }
+    @font-face { font-family: "ClockFont138"; src: url("./Fonts/Ac437_Nix8810_M35.ttf") format("truetype"); font-weight: 400; font-style: normal; font-display: swap; }
+    @font-face { font-family: "ClockFont139"; src: url("./Fonts/Ac437_Olivetti_M15-2y.ttf") format("truetype"); font-weight: 400; font-style: normal; font-display: swap; }
+    @font-face { font-family: "ClockFont140"; src: url("./Fonts/Ac437_Olivetti_M15.ttf") format("truetype"); font-weight: 400; font-style: normal; font-display: swap; }
+    @font-face { font-family: "ClockFont141"; src: url("./Fonts/Ac437_OlivettiThin_8x14.ttf") format("truetype"); font-weight: 400; font-style: normal; font-display: swap; }
+    @font-face { font-family: "ClockFont142"; src: url("./Fonts/Ac437_OlivettiThin_8x16.ttf") format("truetype"); font-weight: 400; font-style: normal; font-display: swap; }
+    @font-face { font-family: "ClockFont143"; src: url("./Fonts/Ac437_OlivettiThin_9x14.ttf") format("truetype"); font-weight: 400; font-style: normal; font-display: swap; }
+    @font-face { font-family: "ClockFont144"; src: url("./Fonts/Ac437_OlivettiThin_9x16.ttf") format("truetype"); font-weight: 400; font-style: normal; font-display: swap; }
+    @font-face { font-family: "ClockFont145"; src: url("./Fonts/Ac437_Paradise132_7x16.ttf") format("truetype"); font-weight: 400; font-style: normal; font-display: swap; }
+    @font-face { font-family: "ClockFont146"; src: url("./Fonts/Ac437_Paradise132_7x9.ttf") format("truetype"); font-weight: 400; font-style: normal; font-display: swap; }
+    @font-face { font-family: "ClockFont147"; src: url("./Fonts/Ac437_Phoenix_BIOS-2y.ttf") format("truetype"); font-weight: 400; font-style: normal; font-display: swap; }
+    @font-face { font-family: "ClockFont148"; src: url("./Fonts/Ac437_Phoenix_BIOS.ttf") format("truetype"); font-weight: 400; font-style: normal; font-display: swap; }
+    @font-face { font-family: "ClockFont149"; src: url("./Fonts/Ac437_PhoenixEGA_8x14.ttf") format("truetype"); font-weight: 400; font-style: normal; font-display: swap; }
+    @font-face { font-family: "ClockFont150"; src: url("./Fonts/Ac437_PhoenixEGA_8x16.ttf") format("truetype"); font-weight: 400; font-style: normal; font-display: swap; }
+    @font-face { font-family: "ClockFont151"; src: url("./Fonts/Ac437_PhoenixEGA_8x8-2y.ttf") format("truetype"); font-weight: 400; font-style: normal; font-display: swap; }
+    @font-face { font-family: "ClockFont152"; src: url("./Fonts/Ac437_PhoenixEGA_8x8.ttf") format("truetype"); font-weight: 400; font-style: normal; font-display: swap; }
+    @font-face { font-family: "ClockFont153"; src: url("./Fonts/Ac437_PhoenixEGA_9x14.ttf") format("truetype"); font-weight: 400; font-style: normal; font-display: swap; }
+    @font-face { font-family: "ClockFont154"; src: url("./Fonts/Ac437_PhoenixVGA_8x14.ttf") format("truetype"); font-weight: 400; font-style: normal; font-display: swap; }
+    @font-face { font-family: "ClockFont155"; src: url("./Fonts/Ac437_PhoenixVGA_8x16.ttf") format("truetype"); font-weight: 400; font-style: normal; font-display: swap; }
+    @font-face { font-family: "ClockFont156"; src: url("./Fonts/Ac437_PhoenixVGA_8x8.ttf") format("truetype"); font-weight: 400; font-style: normal; font-display: swap; }
+    @font-face { font-family: "ClockFont157"; src: url("./Fonts/Ac437_PhoenixVGA_9x14.ttf") format("truetype"); font-weight: 400; font-style: normal; font-display: swap; }
+    @font-face { font-family: "ClockFont158"; src: url("./Fonts/Ac437_PhoenixVGA_9x16.ttf") format("truetype"); font-weight: 400; font-style: normal; font-display: swap; }
+    @font-face { font-family: "ClockFont159"; src: url("./Fonts/Ac437_PhoenixVGA_9x8.ttf") format("truetype"); font-weight: 400; font-style: normal; font-display: swap; }
+    @font-face { font-family: "ClockFont160"; src: url("./Fonts/Ac437_Rainbow100_re_132.ttf") format("truetype"); font-weight: 400; font-style: normal; font-display: swap; }
+    @font-face { font-family: "ClockFont161"; src: url("./Fonts/Ac437_Rainbow100_re_66.ttf") format("truetype"); font-weight: 400; font-style: normal; font-display: swap; }
+    @font-face { font-family: "ClockFont162"; src: url("./Fonts/Ac437_Robotron_A7100.ttf") format("truetype"); font-weight: 400; font-style: normal; font-display: swap; }
+    @font-face { font-family: "ClockFont163"; src: url("./Fonts/Ac437_SanyoMBC16-2y.ttf") format("truetype"); font-weight: 400; font-style: normal; font-display: swap; }
+    @font-face { font-family: "ClockFont164"; src: url("./Fonts/Ac437_SanyoMBC16.ttf") format("truetype"); font-weight: 400; font-style: normal; font-display: swap; }
+    @font-face { font-family: "ClockFont165"; src: url("./Fonts/Ac437_SanyoMBC55x-2y.ttf") format("truetype"); font-weight: 400; font-style: normal; font-display: swap; }
+    @font-face { font-family: "ClockFont166"; src: url("./Fonts/Ac437_SanyoMBC55x.ttf") format("truetype"); font-weight: 400; font-style: normal; font-display: swap; }
+    @font-face { font-family: "ClockFont167"; src: url("./Fonts/Ac437_SanyoMBC775-2y.ttf") format("truetype"); font-weight: 400; font-style: normal; font-display: swap; }
+    @font-face { font-family: "ClockFont168"; src: url("./Fonts/Ac437_SanyoMBC775.ttf") format("truetype"); font-weight: 400; font-style: normal; font-display: swap; }
+    @font-face { font-family: "ClockFont169"; src: url("./Fonts/Ac437_SeequaCm-2y.ttf") format("truetype"); font-weight: 400; font-style: normal; font-display: swap; }
+    @font-face { font-family: "ClockFont170"; src: url("./Fonts/Ac437_SeequaCm.ttf") format("truetype"); font-weight: 400; font-style: normal; font-display: swap; }
+    @font-face { font-family: "ClockFont171"; src: url("./Fonts/Ac437_Siemens_PC-D.ttf") format("truetype"); font-weight: 400; font-style: normal; font-display: swap; }
+    @font-face { font-family: "ClockFont172"; src: url("./Fonts/Ac437_Sigma_RM_8x14.ttf") format("truetype"); font-weight: 400; font-style: normal; font-display: swap; }
+    @font-face { font-family: "ClockFont173"; src: url("./Fonts/Ac437_Sigma_RM_8x16.ttf") format("truetype"); font-weight: 400; font-style: normal; font-display: swap; }
+    @font-face { font-family: "ClockFont174"; src: url("./Fonts/Ac437_Sigma_RM_8x8.ttf") format("truetype"); font-weight: 400; font-style: normal; font-display: swap; }
+    @font-face { font-family: "ClockFont175"; src: url("./Fonts/Ac437_Sigma_RM_9x14.ttf") format("truetype"); font-weight: 400; font-style: normal; font-display: swap; }
+    @font-face { font-family: "ClockFont176"; src: url("./Fonts/Ac437_Sigma_RM_9x16.ttf") format("truetype"); font-weight: 400; font-style: normal; font-display: swap; }
+    @font-face { font-family: "ClockFont177"; src: url("./Fonts/Ac437_Sigma_RM_9x8.ttf") format("truetype"); font-weight: 400; font-style: normal; font-display: swap; }
+    @font-face { font-family: "ClockFont178"; src: url("./Fonts/Ac437_SperryPC_8x16.ttf") format("truetype"); font-weight: 400; font-style: normal; font-display: swap; }
+    @font-face { font-family: "ClockFont179"; src: url("./Fonts/Ac437_SperryPC_CGA-2y.ttf") format("truetype"); font-weight: 400; font-style: normal; font-display: swap; }
+    @font-face { font-family: "ClockFont180"; src: url("./Fonts/Ac437_SperryPC_CGA.ttf") format("truetype"); font-weight: 400; font-style: normal; font-display: swap; }
+    @font-face { font-family: "ClockFont181"; src: url("./Fonts/Ac437_STB_AutoEGA_8x14.ttf") format("truetype"); font-weight: 400; font-style: normal; font-display: swap; }
+    @font-face { font-family: "ClockFont182"; src: url("./Fonts/Ac437_STB_AutoEGA_9x14.ttf") format("truetype"); font-weight: 400; font-style: normal; font-display: swap; }
+    @font-face { font-family: "ClockFont183"; src: url("./Fonts/Ac437_Tandy1K-I_200L-2x.ttf") format("truetype"); font-weight: 400; font-style: normal; font-display: swap; }
+    @font-face { font-family: "ClockFont184"; src: url("./Fonts/Ac437_Tandy1K-I_200L-2y.ttf") format("truetype"); font-weight: 400; font-style: normal; font-display: swap; }
+    @font-face { font-family: "ClockFont185"; src: url("./Fonts/Ac437_Tandy1K-I_200L.ttf") format("truetype"); font-weight: 400; font-style: normal; font-display: swap; }
+    @font-face { font-family: "ClockFont186"; src: url("./Fonts/Ac437_Tandy1K-II_200L-2x.ttf") format("truetype"); font-weight: 400; font-style: normal; font-display: swap; }
+    @font-face { font-family: "ClockFont187"; src: url("./Fonts/Ac437_Tandy1K-II_200L-2y.ttf") format("truetype"); font-weight: 400; font-style: normal; font-display: swap; }
+    @font-face { font-family: "ClockFont188"; src: url("./Fonts/Ac437_Tandy1K-II_200L.ttf") format("truetype"); font-weight: 400; font-style: normal; font-display: swap; }
+    @font-face { font-family: "ClockFont189"; src: url("./Fonts/Ac437_Tandy1K-II_Mono.ttf") format("truetype"); font-weight: 400; font-style: normal; font-display: swap; }
+    @font-face { font-family: "ClockFont190"; src: url("./Fonts/Ac437_Tandy2K-2x.ttf") format("truetype"); font-weight: 400; font-style: normal; font-display: swap; }
+    @font-face { font-family: "ClockFont191"; src: url("./Fonts/Ac437_Tandy2K.ttf") format("truetype"); font-weight: 400; font-style: normal; font-display: swap; }
+    @font-face { font-family: "ClockFont192"; src: url("./Fonts/Ac437_Tandy2K_G-2x.ttf") format("truetype"); font-weight: 400; font-style: normal; font-display: swap; }
+    @font-face { font-family: "ClockFont193"; src: url("./Fonts/Ac437_Tandy2K_G-TV.ttf") format("truetype"); font-weight: 400; font-style: normal; font-display: swap; }
+    @font-face { font-family: "ClockFont194"; src: url("./Fonts/Ac437_Tandy2K_G.ttf") format("truetype"); font-weight: 400; font-style: normal; font-display: swap; }
+    @font-face { font-family: "ClockFont195"; src: url("./Fonts/Ac437_Ti_Pro.ttf") format("truetype"); font-weight: 400; font-style: normal; font-display: swap; }
+    @font-face { font-family: "ClockFont196"; src: url("./Fonts/Ac437_ToshibaSat_8x14.ttf") format("truetype"); font-weight: 400; font-style: normal; font-display: swap; }
+    @font-face { font-family: "ClockFont197"; src: url("./Fonts/Ac437_ToshibaSat_8x16.ttf") format("truetype"); font-weight: 400; font-style: normal; font-display: swap; }
+    @font-face { font-family: "ClockFont198"; src: url("./Fonts/Ac437_ToshibaSat_8x8.ttf") format("truetype"); font-weight: 400; font-style: normal; font-display: swap; }
+    @font-face { font-family: "ClockFont199"; src: url("./Fonts/Ac437_ToshibaSat_9x14.ttf") format("truetype"); font-weight: 400; font-style: normal; font-display: swap; }
+    @font-face { font-family: "ClockFont200"; src: url("./Fonts/Ac437_ToshibaSat_9x16.ttf") format("truetype"); font-weight: 400; font-style: normal; font-display: swap; }
+    @font-face { font-family: "ClockFont201"; src: url("./Fonts/Ac437_ToshibaSat_9x8.ttf") format("truetype"); font-weight: 400; font-style: normal; font-display: swap; }
+    @font-face { font-family: "ClockFont202"; src: url("./Fonts/Ac437_ToshibaT300_8x16.ttf") format("truetype"); font-weight: 400; font-style: normal; font-display: swap; }
+    @font-face { font-family: "ClockFont203"; src: url("./Fonts/Ac437_ToshibaT300_8x8-2y.ttf") format("truetype"); font-weight: 400; font-style: normal; font-display: swap; }
+    @font-face { font-family: "ClockFont204"; src: url("./Fonts/Ac437_ToshibaT300_8x8.ttf") format("truetype"); font-weight: 400; font-style: normal; font-display: swap; }
+    @font-face { font-family: "ClockFont205"; src: url("./Fonts/Ac437_ToshibaTxL1_8x16.ttf") format("truetype"); font-weight: 400; font-style: normal; font-display: swap; }
+    @font-face { font-family: "ClockFont206"; src: url("./Fonts/Ac437_ToshibaTxL1_8x8.ttf") format("truetype"); font-weight: 400; font-style: normal; font-display: swap; }
+    @font-face { font-family: "ClockFont207"; src: url("./Fonts/Ac437_ToshibaTxL2_8x16.ttf") format("truetype"); font-weight: 400; font-style: normal; font-display: swap; }
+    @font-face { font-family: "ClockFont208"; src: url("./Fonts/Ac437_ToshibaTxL2_8x8.ttf") format("truetype"); font-weight: 400; font-style: normal; font-display: swap; }
+    @font-face { font-family: "ClockFont209"; src: url("./Fonts/Ac437_Trident_8x11.ttf") format("truetype"); font-weight: 400; font-style: normal; font-display: swap; }
+    @font-face { font-family: "ClockFont210"; src: url("./Fonts/Ac437_Trident_8x14.ttf") format("truetype"); font-weight: 400; font-style: normal; font-display: swap; }
+    @font-face { font-family: "ClockFont211"; src: url("./Fonts/Ac437_Trident_8x16.ttf") format("truetype"); font-weight: 400; font-style: normal; font-display: swap; }
+    @font-face { font-family: "ClockFont212"; src: url("./Fonts/Ac437_Trident_8x8.ttf") format("truetype"); font-weight: 400; font-style: normal; font-display: swap; }
+    @font-face { font-family: "ClockFont213"; src: url("./Fonts/Ac437_Trident_9x14.ttf") format("truetype"); font-weight: 400; font-style: normal; font-display: swap; }
+    @font-face { font-family: "ClockFont214"; src: url("./Fonts/Ac437_Trident_9x16.ttf") format("truetype"); font-weight: 400; font-style: normal; font-display: swap; }
+    @font-face { font-family: "ClockFont215"; src: url("./Fonts/Ac437_Trident_9x8.ttf") format("truetype"); font-weight: 400; font-style: normal; font-display: swap; }
+    @font-face { font-family: "ClockFont216"; src: url("./Fonts/Ac437_TridentEarly_8x11.ttf") format("truetype"); font-weight: 400; font-style: normal; font-display: swap; }
+    @font-face { font-family: "ClockFont217"; src: url("./Fonts/Ac437_TridentEarly_8x14.ttf") format("truetype"); font-weight: 400; font-style: normal; font-display: swap; }
+    @font-face { font-family: "ClockFont218"; src: url("./Fonts/Ac437_TridentEarly_8x16.ttf") format("truetype"); font-weight: 400; font-style: normal; font-display: swap; }
+    @font-face { font-family: "ClockFont219"; src: url("./Fonts/Ac437_TridentEarly_8x8.ttf") format("truetype"); font-weight: 400; font-style: normal; font-display: swap; }
+    @font-face { font-family: "ClockFont220"; src: url("./Fonts/Ac437_TridentEarly_9x14.ttf") format("truetype"); font-weight: 400; font-style: normal; font-display: swap; }
+    @font-face { font-family: "ClockFont221"; src: url("./Fonts/Ac437_TridentEarly_9x16.ttf") format("truetype"); font-weight: 400; font-style: normal; font-display: swap; }
+    @font-face { font-family: "ClockFont222"; src: url("./Fonts/Ac437_TridentEarly_9x8.ttf") format("truetype"); font-weight: 400; font-style: normal; font-display: swap; }
+    @font-face { font-family: "ClockFont223"; src: url("./Fonts/Ac437_TsengEVA_132_6x14.ttf") format("truetype"); font-weight: 400; font-style: normal; font-display: swap; }
+    @font-face { font-family: "ClockFont224"; src: url("./Fonts/Ac437_TsengEVA_132_6x8.ttf") format("truetype"); font-weight: 400; font-style: normal; font-display: swap; }
+    @font-face { font-family: "ClockFont225"; src: url("./Fonts/Ac437_Verite_8x14.ttf") format("truetype"); font-weight: 400; font-style: normal; font-display: swap; }
+    @font-face { font-family: "ClockFont226"; src: url("./Fonts/Ac437_Verite_8x16.ttf") format("truetype"); font-weight: 400; font-style: normal; font-display: swap; }
+    @font-face { font-family: "ClockFont227"; src: url("./Fonts/Ac437_Verite_8x8-2y.ttf") format("truetype"); font-weight: 400; font-style: normal; font-display: swap; }
+    @font-face { font-family: "ClockFont228"; src: url("./Fonts/Ac437_Verite_8x8.ttf") format("truetype"); font-weight: 400; font-style: normal; font-display: swap; }
+    @font-face { font-family: "ClockFont229"; src: url("./Fonts/Ac437_Verite_9x14.ttf") format("truetype"); font-weight: 400; font-style: normal; font-display: swap; }
+    @font-face { font-family: "ClockFont230"; src: url("./Fonts/Ac437_Verite_9x16.ttf") format("truetype"); font-weight: 400; font-style: normal; font-display: swap; }
+    @font-face { font-family: "ClockFont231"; src: url("./Fonts/Ac437_Verite_9x8.ttf") format("truetype"); font-weight: 400; font-style: normal; font-display: swap; }
+    @font-face { font-family: "ClockFont232"; src: url("./Fonts/Ac437_VTech_BIOS-2y.ttf") format("truetype"); font-weight: 400; font-style: normal; font-display: swap; }
+    @font-face { font-family: "ClockFont233"; src: url("./Fonts/Ac437_VTech_BIOS.ttf") format("truetype"); font-weight: 400; font-style: normal; font-display: swap; }
+    @font-face { font-family: "ClockFont234"; src: url("./Fonts/Ac437_Wyse700a-2y.ttf") format("truetype"); font-weight: 400; font-style: normal; font-display: swap; }
+    @font-face { font-family: "ClockFont235"; src: url("./Fonts/Ac437_Wyse700a.ttf") format("truetype"); font-weight: 400; font-style: normal; font-display: swap; }
+    @font-face { font-family: "ClockFont236"; src: url("./Fonts/Ac437_Wyse700b-2y.ttf") format("truetype"); font-weight: 400; font-style: normal; font-display: swap; }
+    @font-face { font-family: "ClockFont237"; src: url("./Fonts/Ac437_Wyse700b.ttf") format("truetype"); font-weight: 400; font-style: normal; font-display: swap; }
+    @font-face { font-family: "ClockFont238"; src: url("./Fonts/AcPlus_Amstrad_PC-2y.ttf") format("truetype"); font-weight: 400; font-style: normal; font-display: swap; }
+    @font-face { font-family: "ClockFont239"; src: url("./Fonts/AcPlus_Amstrad_PC.ttf") format("truetype"); font-weight: 400; font-style: normal; font-display: swap; }
+    @font-face { font-family: "ClockFont240"; src: url("./Fonts/AcPlus_AST_PremiumExec.ttf") format("truetype"); font-weight: 400; font-style: normal; font-display: swap; }
+    @font-face { font-family: "ClockFont241"; src: url("./Fonts/AcPlus_Cordata_PPC-21.ttf") format("truetype"); font-weight: 400; font-style: normal; font-display: swap; }
+    @font-face { font-family: "ClockFont242"; src: url("./Fonts/AcPlus_Cordata_PPC-400.ttf") format("truetype"); font-weight: 400; font-style: normal; font-display: swap; }
+    @font-face { font-family: "ClockFont243"; src: url("./Fonts/AcPlus_HP_150_re.ttf") format("truetype"); font-weight: 400; font-style: normal; font-display: swap; }
+    @font-face { font-family: "ClockFont244"; src: url("./Fonts/AcPlus_IBM_BIOS-2x.ttf") format("truetype"); font-weight: 400; font-style: normal; font-display: swap; }
+    @font-face { font-family: "ClockFont245"; src: url("./Fonts/AcPlus_IBM_BIOS-2y.ttf") format("truetype"); font-weight: 400; font-style: normal; font-display: swap; }
+    @font-face { font-family: "ClockFont246"; src: url("./Fonts/AcPlus_IBM_BIOS.ttf") format("truetype"); font-weight: 400; font-style: normal; font-display: swap; }
+    @font-face { font-family: "ClockFont247"; src: url("./Fonts/AcPlus_IBM_CGA-2y.ttf") format("truetype"); font-weight: 400; font-style: normal; font-display: swap; }
+    @font-face { font-family: "ClockFont248"; src: url("./Fonts/AcPlus_IBM_CGA.ttf") format("truetype"); font-weight: 400; font-style: normal; font-display: swap; }
+    @font-face { font-family: "ClockFont249"; src: url("./Fonts/AcPlus_IBM_CGAthin-2y.ttf") format("truetype"); font-weight: 400; font-style: normal; font-display: swap; }
+    @font-face { font-family: "ClockFont250"; src: url("./Fonts/AcPlus_IBM_CGAthin.ttf") format("truetype"); font-weight: 400; font-style: normal; font-display: swap; }
+    @font-face { font-family: "ClockFont251"; src: url("./Fonts/AcPlus_IBM_EGA_8x14-2x.ttf") format("truetype"); font-weight: 400; font-style: normal; font-display: swap; }
+    @font-face { font-family: "ClockFont252"; src: url("./Fonts/AcPlus_IBM_EGA_8x14.ttf") format("truetype"); font-weight: 400; font-style: normal; font-display: swap; }
+    @font-face { font-family: "ClockFont253"; src: url("./Fonts/AcPlus_IBM_EGA_8x8-2x.ttf") format("truetype"); font-weight: 400; font-style: normal; font-display: swap; }
+    @font-face { font-family: "ClockFont254"; src: url("./Fonts/AcPlus_IBM_EGA_8x8.ttf") format("truetype"); font-weight: 400; font-style: normal; font-display: swap; }
+    @font-face { font-family: "ClockFont255"; src: url("./Fonts/AcPlus_IBM_EGA_9x14-2x.ttf") format("truetype"); font-weight: 400; font-style: normal; font-display: swap; }
+    @font-face { font-family: "ClockFont256"; src: url("./Fonts/AcPlus_IBM_EGA_9x14.ttf") format("truetype"); font-weight: 400; font-style: normal; font-display: swap; }
+    @font-face { font-family: "ClockFont257"; src: url("./Fonts/AcPlus_IBM_EGA_9x8-2x.ttf") format("truetype"); font-weight: 400; font-style: normal; font-display: swap; }
+    @font-face { font-family: "ClockFont258"; src: url("./Fonts/AcPlus_IBM_EGA_9x8.ttf") format("truetype"); font-weight: 400; font-style: normal; font-display: swap; }
+    @font-face { font-family: "ClockFont259"; src: url("./Fonts/AcPlus_IBM_MDA.ttf") format("truetype"); font-weight: 400; font-style: normal; font-display: swap; }
+    @font-face { font-family: "ClockFont260"; src: url("./Fonts/AcPlus_IBM_VGA_8x14-2x.ttf") format("truetype"); font-weight: 400; font-style: normal; font-display: swap; }
+    @font-face { font-family: "ClockFont261"; src: url("./Fonts/AcPlus_IBM_VGA_8x14.ttf") format("truetype"); font-weight: 400; font-style: normal; font-display: swap; }
+    @font-face { font-family: "ClockFont262"; src: url("./Fonts/AcPlus_IBM_VGA_8x16-2x.ttf") format("truetype"); font-weight: 400; font-style: normal; font-display: swap; }
+    @font-face { font-family: "ClockFont263"; src: url("./Fonts/AcPlus_IBM_VGA_8x16.ttf") format("truetype"); font-weight: 400; font-style: normal; font-display: swap; }
+    @font-face { font-family: "ClockFont264"; src: url("./Fonts/AcPlus_IBM_VGA_9x14-2x.ttf") format("truetype"); font-weight: 400; font-style: normal; font-display: swap; }
+    @font-face { font-family: "ClockFont265"; src: url("./Fonts/AcPlus_IBM_VGA_9x14.ttf") format("truetype"); font-weight: 400; font-style: normal; font-display: swap; }
+    @font-face { font-family: "ClockFont266"; src: url("./Fonts/AcPlus_IBM_VGA_9x16-2x.ttf") format("truetype"); font-weight: 400; font-style: normal; font-display: swap; }
+    @font-face { font-family: "ClockFont267"; src: url("./Fonts/AcPlus_IBM_VGA_9x16.ttf") format("truetype"); font-weight: 400; font-style: normal; font-display: swap; }
+    @font-face { font-family: "ClockFont268"; src: url("./Fonts/AcPlus_IBM_VGA_9x8-2x.ttf") format("truetype"); font-weight: 400; font-style: normal; font-display: swap; }
+    @font-face { font-family: "ClockFont269"; src: url("./Fonts/AcPlus_IBM_VGA_9x8.ttf") format("truetype"); font-weight: 400; font-style: normal; font-display: swap; }
+    @font-face { font-family: "ClockFont270"; src: url("./Fonts/AcPlus_Rainbow100_re_132.ttf") format("truetype"); font-weight: 400; font-style: normal; font-display: swap; }
+    @font-face { font-family: "ClockFont271"; src: url("./Fonts/AcPlus_Rainbow100_re_66.ttf") format("truetype"); font-weight: 400; font-style: normal; font-display: swap; }
+    @font-face { font-family: "ClockFont272"; src: url("./Fonts/AcPlus_Tandy1K-II_200L-2x.ttf") format("truetype"); font-weight: 400; font-style: normal; font-display: swap; }
+    @font-face { font-family: "ClockFont273"; src: url("./Fonts/AcPlus_Tandy1K-II_200L-2y.ttf") format("truetype"); font-weight: 400; font-style: normal; font-display: swap; }
+    @font-face { font-family: "ClockFont274"; src: url("./Fonts/AcPlus_Tandy1K-II_200L.ttf") format("truetype"); font-weight: 400; font-style: normal; font-display: swap; }
+    @font-face { font-family: "ClockFont275"; src: url("./Fonts/AcPlus_ToshibaSat_8x14.ttf") format("truetype"); font-weight: 400; font-style: normal; font-display: swap; }
+    @font-face { font-family: "ClockFont276"; src: url("./Fonts/AcPlus_ToshibaSat_8x16.ttf") format("truetype"); font-weight: 400; font-style: normal; font-display: swap; }
+    @font-face { font-family: "ClockFont277"; src: url("./Fonts/AcPlus_ToshibaSat_8x8.ttf") format("truetype"); font-weight: 400; font-style: normal; font-display: swap; }
+    @font-face { font-family: "ClockFont278"; src: url("./Fonts/AcPlus_ToshibaSat_9x14.ttf") format("truetype"); font-weight: 400; font-style: normal; font-display: swap; }
+    @font-face { font-family: "ClockFont279"; src: url("./Fonts/AcPlus_ToshibaSat_9x16.ttf") format("truetype"); font-weight: 400; font-style: normal; font-display: swap; }
+    @font-face { font-family: "ClockFont280"; src: url("./Fonts/AcPlus_ToshibaSat_9x8.ttf") format("truetype"); font-weight: 400; font-style: normal; font-display: swap; }
+    @font-face { font-family: "ClockFont281"; src: url("./Fonts/AcPlus_ToshibaTxL1_8x16.ttf") format("truetype"); font-weight: 400; font-style: normal; font-display: swap; }
+    @font-face { font-family: "ClockFont282"; src: url("./Fonts/AcPlus_ToshibaTxL2_8x16.ttf") format("truetype"); font-weight: 400; font-style: normal; font-display: swap; }
+    @font-face { font-family: "ClockFont283"; src: url("./Fonts/AlexBrush-Regular.ttf") format("truetype"); font-weight: 400; font-style: normal; font-display: swap; }
+    @font-face { font-family: "ClockFont284"; src: url("./Fonts/Alien.ttf") format("truetype"); font-weight: 400; font-style: normal; font-display: swap; }
+    @font-face { font-family: "ClockFont285"; src: url("./Fonts/AnthropicSans-Display-Bold-Static.otf") format("opentype"); font-weight: 400; font-style: normal; font-display: swap; }
+    @font-face { font-family: "ClockFont286"; src: url("./Fonts/AnthropicSans-Display-BoldItalic-Static.otf") format("opentype"); font-weight: 400; font-style: normal; font-display: swap; }
+    @font-face { font-family: "ClockFont287"; src: url("./Fonts/AnthropicSans-Display-Extrabold-Static.otf") format("opentype"); font-weight: 400; font-style: normal; font-display: swap; }
+    @font-face { font-family: "ClockFont288"; src: url("./Fonts/AnthropicSans-Display-ExtraboldItalic-Static.otf") format("opentype"); font-weight: 400; font-style: normal; font-display: swap; }
+    @font-face { font-family: "ClockFont289"; src: url("./Fonts/AnthropicSans-Display-Light-Static.otf") format("opentype"); font-weight: 400; font-style: normal; font-display: swap; }
+    @font-face { font-family: "ClockFont290"; src: url("./Fonts/AnthropicSans-Display-Medium-Static.otf") format("opentype"); font-weight: 400; font-style: normal; font-display: swap; }
+    @font-face { font-family: "ClockFont291"; src: url("./Fonts/AnthropicSans-Display-MediumItalic-Static.otf") format("opentype"); font-weight: 400; font-style: normal; font-display: swap; }
+    @font-face { font-family: "ClockFont292"; src: url("./Fonts/AnthropicSans-Display-Regular-Static.otf") format("opentype"); font-weight: 400; font-style: normal; font-display: swap; }
+    @font-face { font-family: "ClockFont293"; src: url("./Fonts/AnthropicSans-Display-RegularItalic-Static.otf") format("opentype"); font-weight: 400; font-style: normal; font-display: swap; }
+    @font-face { font-family: "ClockFont294"; src: url("./Fonts/AnthropicSans-Display-Semibold-Static.otf") format("opentype"); font-weight: 400; font-style: normal; font-display: swap; }
+    @font-face { font-family: "ClockFont295"; src: url("./Fonts/AnthropicSans-Text-Bold-Static.otf") format("opentype"); font-weight: 400; font-style: normal; font-display: swap; }
+    @font-face { font-family: "ClockFont296"; src: url("./Fonts/AnthropicSans-Text-BoldItalic-Static.otf") format("opentype"); font-weight: 400; font-style: normal; font-display: swap; }
+    @font-face { font-family: "ClockFont297"; src: url("./Fonts/AnthropicSans-Text-Extrabold-Static.otf") format("opentype"); font-weight: 400; font-style: normal; font-display: swap; }
+    @font-face { font-family: "ClockFont298"; src: url("./Fonts/AnthropicSans-Text-ExtraboldItalic-Static.otf") format("opentype"); font-weight: 400; font-style: normal; font-display: swap; }
+    @font-face { font-family: "ClockFont299"; src: url("./Fonts/AnthropicSans-Text-Light-Static.otf") format("opentype"); font-weight: 400; font-style: normal; font-display: swap; }
+    @font-face { font-family: "ClockFont300"; src: url("./Fonts/AnthropicSans-Text-Medium-Static.otf") format("opentype"); font-weight: 400; font-style: normal; font-display: swap; }
+    @font-face { font-family: "ClockFont301"; src: url("./Fonts/AnthropicSans-Text-MediumItalic-Static.otf") format("opentype"); font-weight: 400; font-style: normal; font-display: swap; }
+    @font-face { font-family: "ClockFont302"; src: url("./Fonts/AnthropicSans-Text-Regular-Static.otf") format("opentype"); font-weight: 400; font-style: normal; font-display: swap; }
+    @font-face { font-family: "ClockFont303"; src: url("./Fonts/AnthropicSans-Text-RegularItalic-Static.otf") format("opentype"); font-weight: 400; font-style: normal; font-display: swap; }
+    @font-face { font-family: "ClockFont304"; src: url("./Fonts/AnthropicSans-Text-Semibold-Static.otf") format("opentype"); font-weight: 400; font-style: normal; font-display: swap; }
+    @font-face { font-family: "ClockFont305"; src: url("./Fonts/AnthropicSerif-Display-Bold-Static.otf") format("opentype"); font-weight: 400; font-style: normal; font-display: swap; }
+    @font-face { font-family: "ClockFont306"; src: url("./Fonts/AnthropicSerif-Display-BoldItalic-Static.otf") format("opentype"); font-weight: 400; font-style: normal; font-display: swap; }
+    @font-face { font-family: "ClockFont307"; src: url("./Fonts/AnthropicSerif-Display-Extrabold-Static.otf") format("opentype"); font-weight: 400; font-style: normal; font-display: swap; }
+    @font-face { font-family: "ClockFont308"; src: url("./Fonts/AnthropicSerif-Display-ExtraboldItalic-Static.otf") format("opentype"); font-weight: 400; font-style: normal; font-display: swap; }
+    @font-face { font-family: "ClockFont309"; src: url("./Fonts/AnthropicSerif-Display-Light-Static.otf") format("opentype"); font-weight: 400; font-style: normal; font-display: swap; }
+    @font-face { font-family: "ClockFont310"; src: url("./Fonts/AnthropicSerif-Display-LightItalic-Static.otf") format("opentype"); font-weight: 400; font-style: normal; font-display: swap; }
+    @font-face { font-family: "ClockFont311"; src: url("./Fonts/AnthropicSerif-Display-Medium-Static.otf") format("opentype"); font-weight: 400; font-style: normal; font-display: swap; }
+    @font-face { font-family: "ClockFont312"; src: url("./Fonts/AnthropicSerif-Display-MediumItalic-Static.otf") format("opentype"); font-weight: 400; font-style: normal; font-display: swap; }
+    @font-face { font-family: "ClockFont313"; src: url("./Fonts/AnthropicSerif-Display-Regular-Static.otf") format("opentype"); font-weight: 400; font-style: normal; font-display: swap; }
+    @font-face { font-family: "ClockFont314"; src: url("./Fonts/AnthropicSerif-Display-RegularItalic-Static.otf") format("opentype"); font-weight: 400; font-style: normal; font-display: swap; }
+    @font-face { font-family: "ClockFont315"; src: url("./Fonts/AnthropicSerif-Display-Semibold-Static.otf") format("opentype"); font-weight: 400; font-style: normal; font-display: swap; }
+    @font-face { font-family: "ClockFont316"; src: url("./Fonts/AnthropicSerif-Display-SemiboldItalic-Static.otf") format("opentype"); font-weight: 400; font-style: normal; font-display: swap; }
+    @font-face { font-family: "ClockFont317"; src: url("./Fonts/AnthropicSerif-Text-Bold-Static.otf") format("opentype"); font-weight: 400; font-style: normal; font-display: swap; }
+    @font-face { font-family: "ClockFont318"; src: url("./Fonts/AnthropicSerif-Text-BoldItalic-Static.otf") format("opentype"); font-weight: 400; font-style: normal; font-display: swap; }
+    @font-face { font-family: "ClockFont319"; src: url("./Fonts/AnthropicSerif-Text-Extrabold-Static.otf") format("opentype"); font-weight: 400; font-style: normal; font-display: swap; }
+    @font-face { font-family: "ClockFont320"; src: url("./Fonts/AnthropicSerif-Text-ExtraboldItalic-Static.otf") format("opentype"); font-weight: 400; font-style: normal; font-display: swap; }
+    @font-face { font-family: "ClockFont321"; src: url("./Fonts/AnthropicSerif-Text-Light-Static.otf") format("opentype"); font-weight: 400; font-style: normal; font-display: swap; }
+    @font-face { font-family: "ClockFont322"; src: url("./Fonts/AnthropicSerif-Text-LightItalic-Static.otf") format("opentype"); font-weight: 400; font-style: normal; font-display: swap; }
+    @font-face { font-family: "ClockFont323"; src: url("./Fonts/AnthropicSerif-Text-Medium-Static.otf") format("opentype"); font-weight: 400; font-style: normal; font-display: swap; }
+    @font-face { font-family: "ClockFont324"; src: url("./Fonts/AnthropicSerif-Text-MediumItalic-Static.otf") format("opentype"); font-weight: 400; font-style: normal; font-display: swap; }
+    @font-face { font-family: "ClockFont325"; src: url("./Fonts/AnthropicSerif-Text-Regular-Static.otf") format("opentype"); font-weight: 400; font-style: normal; font-display: swap; }
+    @font-face { font-family: "ClockFont326"; src: url("./Fonts/AnthropicSerif-Text-RegularItalic-Static.otf") format("opentype"); font-weight: 400; font-style: normal; font-display: swap; }
+    @font-face { font-family: "ClockFont327"; src: url("./Fonts/AnthropicSerif-Text-Semibold-Static.otf") format("opentype"); font-weight: 400; font-style: normal; font-display: swap; }
+    @font-face { font-family: "ClockFont328"; src: url("./Fonts/AnthropicSerif-Text-SemiboldItalic-Static.otf") format("opentype"); font-weight: 400; font-style: normal; font-display: swap; }
+    @font-face { font-family: "ClockFont329"; src: url("./Fonts/apercu_bold_italic_pro.otf") format("opentype"); font-weight: 400; font-style: normal; font-display: swap; }
+    @font-face { font-family: "ClockFont330"; src: url("./Fonts/apercu_bold_pro.otf") format("opentype"); font-weight: 400; font-style: normal; font-display: swap; }
+    @font-face { font-family: "ClockFont331"; src: url("./Fonts/apercu_medium_italic_pro.otf") format("opentype"); font-weight: 400; font-style: normal; font-display: swap; }
+    @font-face { font-family: "ClockFont332"; src: url("./Fonts/apercu_medium_pro.otf") format("opentype"); font-weight: 400; font-style: normal; font-display: swap; }
+    @font-face { font-family: "ClockFont333"; src: url("./Fonts/apercu_regular_italic_pro.otf") format("opentype"); font-weight: 400; font-style: normal; font-display: swap; }
+    @font-face { font-family: "ClockFont334"; src: url("./Fonts/apercu_regular_pro.otf") format("opentype"); font-weight: 400; font-style: normal; font-display: swap; }
+    @font-face { font-family: "ClockFont335"; src: url("./Fonts/Balloon%20Drop%20Shadow%20D%20Regular.ttf") format("truetype"); font-weight: 400; font-style: normal; font-display: swap; }
+    @font-face { font-family: "ClockFont336"; src: url("./Fonts/balloonextraboldregular.ttf") format("truetype"); font-weight: 400; font-style: normal; font-display: swap; }
+    @font-face { font-family: "ClockFont337"; src: url("./Fonts/Baloo-Regular.ttf") format("truetype"); font-weight: 400; font-style: normal; font-display: swap; }
+    @font-face { font-family: "ClockFont338"; src: url("./Fonts/big_noodle_titling.ttf") format("truetype"); font-weight: 400; font-style: normal; font-display: swap; }
+    @font-face { font-family: "ClockFont339"; src: url("./Fonts/big_noodle_titling_oblique.ttf") format("truetype"); font-weight: 400; font-style: normal; font-display: swap; }
+    @font-face { font-family: "ClockFont340"; src: url("./Fonts/BlackOpsOne-Regular.ttf") format("truetype"); font-weight: 400; font-style: normal; font-display: swap; }
+    @font-face { font-family: "ClockFont341"; src: url("./Fonts/Bungee-Regular.ttf") format("truetype"); font-weight: 400; font-style: normal; font-display: swap; }
+    @font-face { font-family: "ClockFont342"; src: url("./Fonts/BungeeInline-Regular.ttf") format("truetype"); font-weight: 400; font-style: normal; font-display: swap; }
+    @font-face { font-family: "ClockFont343"; src: url("./Fonts/Candcu__.ttf") format("truetype"); font-weight: 400; font-style: normal; font-display: swap; }
+    @font-face { font-family: "ClockFont344"; src: url("./Fonts/Century%20Gothic.ttf") format("truetype"); font-weight: 400; font-style: normal; font-display: swap; }
+    @font-face { font-family: "ClockFont345"; src: url("./Fonts/CHARCOAL.TTF") format("truetype"); font-weight: 400; font-style: normal; font-display: swap; }
+    @font-face { font-family: "ClockFont346"; src: url("./Fonts/CHE-DUST.TTF") format("truetype"); font-weight: 400; font-style: normal; font-display: swap; }
+    @font-face { font-family: "ClockFont347"; src: url("./Fonts/ChicagoFLF.ttf") format("truetype"); font-weight: 400; font-style: normal; font-display: swap; }
+    @font-face { font-family: "ClockFont348"; src: url("./Fonts/Christmas%20Bell%20-%20Personal%20Use.otf") format("opentype"); font-weight: 400; font-style: normal; font-display: swap; }
+    @font-face { font-family: "ClockFont349"; src: url("./Fonts/Cinzel-Bold.ttf") format("truetype"); font-weight: 400; font-style: normal; font-display: swap; }
+    @font-face { font-family: "ClockFont350"; src: url("./Fonts/Demonstars-Regular.ttf") format("truetype"); font-weight: 400; font-style: normal; font-display: swap; }
+    @font-face { font-family: "ClockFont351"; src: url("./Fonts/DroidSansMono.ttf") format("truetype"); font-weight: 400; font-style: normal; font-display: swap; }
+    @font-face { font-family: "ClockFont352"; src: url("./Fonts/FKGroteskNeueTrial-Black-BF6576818b4c472.otf") format("opentype"); font-weight: 400; font-style: normal; font-display: swap; }
+    @font-face { font-family: "ClockFont353"; src: url("./Fonts/FKGroteskNeueTrial-BlackItalic-BF6576818becb0d.otf") format("opentype"); font-weight: 400; font-style: normal; font-display: swap; }
+    @font-face { font-family: "ClockFont354"; src: url("./Fonts/FKGroteskNeueTrial-Bold-BF6576818bd3700.otf") format("opentype"); font-weight: 400; font-style: normal; font-display: swap; }
+    @font-face { font-family: "ClockFont355"; src: url("./Fonts/FKGroteskNeueTrial-BoldItalic-BF6576818c39d11.otf") format("opentype"); font-weight: 400; font-style: normal; font-display: swap; }
+    @font-face { font-family: "ClockFont356"; src: url("./Fonts/FKGroteskNeueTrial-Italic-BF6576818c041e2.otf") format("opentype"); font-weight: 400; font-style: normal; font-display: swap; }
+    @font-face { font-family: "ClockFont357"; src: url("./Fonts/FKGroteskNeueTrial-Light-BF6576818c0f3e8.otf") format("opentype"); font-weight: 400; font-style: normal; font-display: swap; }
+    @font-face { font-family: "ClockFont358"; src: url("./Fonts/FKGroteskNeueTrial-LightItalic-BF6576818c3183c.otf") format("opentype"); font-weight: 400; font-style: normal; font-display: swap; }
+    @font-face { font-family: "ClockFont359"; src: url("./Fonts/FKGroteskNeueTrial-Medium-BF6576818c3a00a.otf") format("opentype"); font-weight: 400; font-style: normal; font-display: swap; }
+    @font-face { font-family: "ClockFont360"; src: url("./Fonts/FKGroteskNeueTrial-MediumItalic-BF6576818c2aaf8.otf") format("opentype"); font-weight: 400; font-style: normal; font-display: swap; }
+    @font-face { font-family: "ClockFont361"; src: url("./Fonts/FKGroteskNeueTrial-Regular-BF6576818c3af74.otf") format("opentype"); font-weight: 400; font-style: normal; font-display: swap; }
+    @font-face { font-family: "ClockFont362"; src: url("./Fonts/FKGroteskNeueTrial-Thin-BF6576818c2a14c.otf") format("opentype"); font-weight: 400; font-style: normal; font-display: swap; }
+    @font-face { font-family: "ClockFont363"; src: url("./Fonts/FKGroteskNeueTrial-ThinItalic-BF6576818c5cbd8.otf") format("opentype"); font-weight: 400; font-style: normal; font-display: swap; }
+    @font-face { font-family: "ClockFont364"; src: url("./Fonts/Geist-VariableFont_wght.ttf") format("truetype"); font-weight: 400; font-style: normal; font-display: swap; }
+    @font-face { font-family: "ClockFont365"; src: url("./Fonts/GlutenVariable.ttf") format("truetype"); font-weight: 400; font-style: normal; font-display: swap; }
+    @font-face { font-family: "ClockFont366"; src: url("./Fonts/GoogleSans-Italic-VariableFont_GRAD%2Copsz%2Cwght.ttf") format("truetype"); font-weight: 400; font-style: normal; font-display: swap; }
+    @font-face { font-family: "ClockFont367"; src: url("./Fonts/GoogleSans-VariableFont_GRAD%2Copsz%2Cwght.ttf") format("truetype"); font-weight: 400; font-style: normal; font-display: swap; }
+    @font-face { font-family: "ClockFont368"; src: url("./Fonts/Impact%20Label%20Reversed.ttf") format("truetype"); font-weight: 400; font-style: normal; font-display: swap; }
+    @font-face { font-family: "ClockFont369"; src: url("./Fonts/Impact%20Label.ttf") format("truetype"); font-weight: 400; font-style: normal; font-display: swap; }
+    @font-face { font-family: "ClockFont370"; src: url("./Fonts/InstrumentSerif-Italic.ttf") format("truetype"); font-weight: 400; font-style: normal; font-display: swap; }
+    @font-face { font-family: "ClockFont371"; src: url("./Fonts/InstrumentSerif-Regular.ttf") format("truetype"); font-weight: 400; font-style: normal; font-display: swap; }
+    @font-face { font-family: "ClockFont372"; src: url("./Fonts/Inter-Italic-VariableFont_opsz%2Cwght.ttf") format("truetype"); font-weight: 400; font-style: normal; font-display: swap; }
+    @font-face { font-family: "ClockFont373"; src: url("./Fonts/Inter-VariableFont_opsz%2Cwght.ttf") format("truetype"); font-weight: 400; font-style: normal; font-display: swap; }
+    @font-face { font-family: "ClockFont374"; src: url("./Fonts/Inter_18pt-Black.ttf") format("truetype"); font-weight: 400; font-style: normal; font-display: swap; }
+    @font-face { font-family: "ClockFont375"; src: url("./Fonts/Inter_18pt-BlackItalic.ttf") format("truetype"); font-weight: 400; font-style: normal; font-display: swap; }
+    @font-face { font-family: "ClockFont376"; src: url("./Fonts/Inter_18pt-Bold.ttf") format("truetype"); font-weight: 400; font-style: normal; font-display: swap; }
+    @font-face { font-family: "ClockFont377"; src: url("./Fonts/Inter_18pt-BoldItalic.ttf") format("truetype"); font-weight: 400; font-style: normal; font-display: swap; }
+    @font-face { font-family: "ClockFont378"; src: url("./Fonts/Inter_18pt-ExtraBold.ttf") format("truetype"); font-weight: 400; font-style: normal; font-display: swap; }
+    @font-face { font-family: "ClockFont379"; src: url("./Fonts/Inter_18pt-ExtraBoldItalic.ttf") format("truetype"); font-weight: 400; font-style: normal; font-display: swap; }
+    @font-face { font-family: "ClockFont380"; src: url("./Fonts/Inter_18pt-ExtraLight.ttf") format("truetype"); font-weight: 400; font-style: normal; font-display: swap; }
+    @font-face { font-family: "ClockFont381"; src: url("./Fonts/Inter_18pt-ExtraLightItalic.ttf") format("truetype"); font-weight: 400; font-style: normal; font-display: swap; }
+    @font-face { font-family: "ClockFont382"; src: url("./Fonts/Inter_18pt-Italic.ttf") format("truetype"); font-weight: 400; font-style: normal; font-display: swap; }
+    @font-face { font-family: "ClockFont383"; src: url("./Fonts/Inter_18pt-Light.ttf") format("truetype"); font-weight: 400; font-style: normal; font-display: swap; }
+    @font-face { font-family: "ClockFont384"; src: url("./Fonts/Inter_18pt-LightItalic.ttf") format("truetype"); font-weight: 400; font-style: normal; font-display: swap; }
+    @font-face { font-family: "ClockFont385"; src: url("./Fonts/Inter_18pt-Medium.ttf") format("truetype"); font-weight: 400; font-style: normal; font-display: swap; }
+    @font-face { font-family: "ClockFont386"; src: url("./Fonts/Inter_18pt-MediumItalic.ttf") format("truetype"); font-weight: 400; font-style: normal; font-display: swap; }
+    @font-face { font-family: "ClockFont387"; src: url("./Fonts/Inter_18pt-Regular.ttf") format("truetype"); font-weight: 400; font-style: normal; font-display: swap; }
+    @font-face { font-family: "ClockFont388"; src: url("./Fonts/Inter_18pt-SemiBold.ttf") format("truetype"); font-weight: 400; font-style: normal; font-display: swap; }
+    @font-face { font-family: "ClockFont389"; src: url("./Fonts/Inter_18pt-SemiBoldItalic.ttf") format("truetype"); font-weight: 400; font-style: normal; font-display: swap; }
+    @font-face { font-family: "ClockFont390"; src: url("./Fonts/Inter_18pt-Thin.ttf") format("truetype"); font-weight: 400; font-style: normal; font-display: swap; }
+    @font-face { font-family: "ClockFont391"; src: url("./Fonts/Inter_18pt-ThinItalic.ttf") format("truetype"); font-weight: 400; font-style: normal; font-display: swap; }
+    @font-face { font-family: "ClockFont392"; src: url("./Fonts/Inter_24pt-Black.ttf") format("truetype"); font-weight: 400; font-style: normal; font-display: swap; }
+    @font-face { font-family: "ClockFont393"; src: url("./Fonts/Inter_24pt-BlackItalic.ttf") format("truetype"); font-weight: 400; font-style: normal; font-display: swap; }
+    @font-face { font-family: "ClockFont394"; src: url("./Fonts/Inter_24pt-Bold.ttf") format("truetype"); font-weight: 400; font-style: normal; font-display: swap; }
+    @font-face { font-family: "ClockFont395"; src: url("./Fonts/Inter_24pt-BoldItalic.ttf") format("truetype"); font-weight: 400; font-style: normal; font-display: swap; }
+    @font-face { font-family: "ClockFont396"; src: url("./Fonts/Inter_24pt-ExtraBold.ttf") format("truetype"); font-weight: 400; font-style: normal; font-display: swap; }
+    @font-face { font-family: "ClockFont397"; src: url("./Fonts/Inter_24pt-ExtraBoldItalic.ttf") format("truetype"); font-weight: 400; font-style: normal; font-display: swap; }
+    @font-face { font-family: "ClockFont398"; src: url("./Fonts/Inter_24pt-ExtraLight.ttf") format("truetype"); font-weight: 400; font-style: normal; font-display: swap; }
+    @font-face { font-family: "ClockFont399"; src: url("./Fonts/Inter_24pt-ExtraLightItalic.ttf") format("truetype"); font-weight: 400; font-style: normal; font-display: swap; }
+    @font-face { font-family: "ClockFont400"; src: url("./Fonts/Inter_24pt-Italic.ttf") format("truetype"); font-weight: 400; font-style: normal; font-display: swap; }
+    @font-face { font-family: "ClockFont401"; src: url("./Fonts/Inter_24pt-Light.ttf") format("truetype"); font-weight: 400; font-style: normal; font-display: swap; }
+    @font-face { font-family: "ClockFont402"; src: url("./Fonts/Inter_24pt-LightItalic.ttf") format("truetype"); font-weight: 400; font-style: normal; font-display: swap; }
+    @font-face { font-family: "ClockFont403"; src: url("./Fonts/Inter_24pt-Medium.ttf") format("truetype"); font-weight: 400; font-style: normal; font-display: swap; }
+    @font-face { font-family: "ClockFont404"; src: url("./Fonts/Inter_24pt-MediumItalic.ttf") format("truetype"); font-weight: 400; font-style: normal; font-display: swap; }
+    @font-face { font-family: "ClockFont405"; src: url("./Fonts/Inter_24pt-Regular.ttf") format("truetype"); font-weight: 400; font-style: normal; font-display: swap; }
+    @font-face { font-family: "ClockFont406"; src: url("./Fonts/Inter_24pt-SemiBold.ttf") format("truetype"); font-weight: 400; font-style: normal; font-display: swap; }
+    @font-face { font-family: "ClockFont407"; src: url("./Fonts/Inter_24pt-SemiBoldItalic.ttf") format("truetype"); font-weight: 400; font-style: normal; font-display: swap; }
+    @font-face { font-family: "ClockFont408"; src: url("./Fonts/Inter_24pt-Thin.ttf") format("truetype"); font-weight: 400; font-style: normal; font-display: swap; }
+    @font-face { font-family: "ClockFont409"; src: url("./Fonts/Inter_24pt-ThinItalic.ttf") format("truetype"); font-weight: 400; font-style: normal; font-display: swap; }
+    @font-face { font-family: "ClockFont410"; src: url("./Fonts/Inter_28pt-Black.ttf") format("truetype"); font-weight: 400; font-style: normal; font-display: swap; }
+    @font-face { font-family: "ClockFont411"; src: url("./Fonts/Inter_28pt-BlackItalic.ttf") format("truetype"); font-weight: 400; font-style: normal; font-display: swap; }
+    @font-face { font-family: "ClockFont412"; src: url("./Fonts/Inter_28pt-Bold.ttf") format("truetype"); font-weight: 400; font-style: normal; font-display: swap; }
+    @font-face { font-family: "ClockFont413"; src: url("./Fonts/Inter_28pt-BoldItalic.ttf") format("truetype"); font-weight: 400; font-style: normal; font-display: swap; }
+    @font-face { font-family: "ClockFont414"; src: url("./Fonts/Inter_28pt-ExtraBold.ttf") format("truetype"); font-weight: 400; font-style: normal; font-display: swap; }
+    @font-face { font-family: "ClockFont415"; src: url("./Fonts/Inter_28pt-ExtraBoldItalic.ttf") format("truetype"); font-weight: 400; font-style: normal; font-display: swap; }
+    @font-face { font-family: "ClockFont416"; src: url("./Fonts/Inter_28pt-ExtraLight.ttf") format("truetype"); font-weight: 400; font-style: normal; font-display: swap; }
+    @font-face { font-family: "ClockFont417"; src: url("./Fonts/Inter_28pt-ExtraLightItalic.ttf") format("truetype"); font-weight: 400; font-style: normal; font-display: swap; }
+    @font-face { font-family: "ClockFont418"; src: url("./Fonts/Inter_28pt-Italic.ttf") format("truetype"); font-weight: 400; font-style: normal; font-display: swap; }
+    @font-face { font-family: "ClockFont419"; src: url("./Fonts/Inter_28pt-Light.ttf") format("truetype"); font-weight: 400; font-style: normal; font-display: swap; }
+    @font-face { font-family: "ClockFont420"; src: url("./Fonts/Inter_28pt-LightItalic.ttf") format("truetype"); font-weight: 400; font-style: normal; font-display: swap; }
+    @font-face { font-family: "ClockFont421"; src: url("./Fonts/Inter_28pt-Medium.ttf") format("truetype"); font-weight: 400; font-style: normal; font-display: swap; }
+    @font-face { font-family: "ClockFont422"; src: url("./Fonts/Inter_28pt-MediumItalic.ttf") format("truetype"); font-weight: 400; font-style: normal; font-display: swap; }
+    @font-face { font-family: "ClockFont423"; src: url("./Fonts/Inter_28pt-Regular.ttf") format("truetype"); font-weight: 400; font-style: normal; font-display: swap; }
+    @font-face { font-family: "ClockFont424"; src: url("./Fonts/Inter_28pt-SemiBold.ttf") format("truetype"); font-weight: 400; font-style: normal; font-display: swap; }
+    @font-face { font-family: "ClockFont425"; src: url("./Fonts/Inter_28pt-SemiBoldItalic.ttf") format("truetype"); font-weight: 400; font-style: normal; font-display: swap; }
+    @font-face { font-family: "ClockFont426"; src: url("./Fonts/Inter_28pt-Thin.ttf") format("truetype"); font-weight: 400; font-style: normal; font-display: swap; }
+    @font-face { font-family: "ClockFont427"; src: url("./Fonts/Inter_28pt-ThinItalic.ttf") format("truetype"); font-weight: 400; font-style: normal; font-display: swap; }
+    @font-face { font-family: "ClockFont428"; src: url("./Fonts/Kabel-Black.ttf") format("truetype"); font-weight: 400; font-style: normal; font-display: swap; }
+    @font-face { font-family: "ClockFont429"; src: url("./Fonts/LeckerliOne-Regular.ttf") format("truetype"); font-weight: 400; font-style: normal; font-display: swap; }
+    @font-face { font-family: "ClockFont430"; src: url("./Fonts/LicensePlates.ttf") format("truetype"); font-weight: 400; font-style: normal; font-display: swap; }
+    @font-face { font-family: "ClockFont431"; src: url("./Fonts/Lora-VariableFont_wght.ttf") format("truetype"); font-weight: 400; font-style: normal; font-display: swap; }
+    @font-face { font-family: "ClockFont432"; src: url("./Fonts/MerryChristmasFlake.ttf") format("truetype"); font-weight: 400; font-style: normal; font-display: swap; }
+    @font-face { font-family: "ClockFont433"; src: url("./Fonts/MLTWNII_.ttf") format("truetype"); font-weight: 400; font-style: normal; font-display: swap; }
+    @font-face { font-family: "ClockFont434"; src: url("./Fonts/MYRIADPRO-REGULAR.OTF") format("opentype"); font-weight: 400; font-style: normal; font-display: swap; }
+    @font-face { font-family: "ClockFont435"; src: url("./Fonts/NIRVANA.TTF") format("truetype"); font-weight: 400; font-style: normal; font-display: swap; }
+    @font-face { font-family: "ClockFont436"; src: url("./Fonts/OPTIBalloonExtraBold.otf") format("opentype"); font-weight: 400; font-style: normal; font-display: swap; }
+    @font-face { font-family: "ClockFont437"; src: url("./Fonts/OPTIBankGothic-Medium.otf") format("opentype"); font-weight: 400; font-style: normal; font-display: swap; }
+    @font-face { font-family: "ClockFont438"; src: url("./Fonts/PermanentMarker.ttf") format("truetype"); font-weight: 400; font-style: normal; font-display: swap; }
+    @font-face { font-family: "ClockFont439"; src: url("./Fonts/PLANK___.TTF") format("truetype"); font-weight: 400; font-style: normal; font-display: swap; }
+    @font-face { font-family: "ClockFont440"; src: url("./Fonts/PWHappyChristmas.ttf") format("truetype"); font-weight: 400; font-style: normal; font-display: swap; }
+    @font-face { font-family: "ClockFont441"; src: url("./Fonts/Resolute%20NF%20W01%20Regular.ttf") format("truetype"); font-weight: 400; font-style: normal; font-display: swap; }
+    @font-face { font-family: "ClockFont442"; src: url("./Fonts/Roboto-Regular.ttf") format("truetype"); font-weight: 400; font-style: normal; font-display: swap; }
+    @font-face { font-family: "ClockFont443"; src: url("./Fonts/Shrikhand-Regular.ttf") format("truetype"); font-weight: 400; font-style: normal; font-display: swap; }
+    @font-face { font-family: "ClockFont444"; src: url("./Fonts/Skranji-Bold.ttf") format("truetype"); font-weight: 400; font-style: normal; font-display: swap; }
+    @font-face { font-family: "ClockFont445"; src: url("./Fonts/Skyscapers.ttf") format("truetype"); font-weight: 400; font-style: normal; font-display: swap; }
+    @font-face { font-family: "ClockFont446"; src: url("./Fonts/SortsMillGoudy-Regular.ttf") format("truetype"); font-weight: 400; font-style: normal; font-display: swap; }
+    @font-face { font-family: "ClockFont447"; src: url("./Fonts/Soundgarden%20Badmotorfont.ttf") format("truetype"); font-weight: 400; font-style: normal; font-display: swap; }
+    @font-face { font-family: "ClockFont448"; src: url("./Fonts/SourceSerif4-VariableFont_opsz%2Cwght.ttf") format("truetype"); font-weight: 400; font-style: normal; font-display: swap; }
+    @font-face { font-family: "ClockFont449"; src: url("./Fonts/trebuc.ttf") format("truetype"); font-weight: 400; font-style: normal; font-display: swap; }
+    * { box-sizing: border-box; }
+    html, body { margin: 0; width: 100%; height: 100%; background: #000; }
+    body {
+      color: #fff;
+      font-family: "Anthropic Sans", sans-serif;
+      font-weight: 400;
+      display: grid;
+      place-items: center;
+      min-height: 100svh;
+      overflow: hidden;
+    }
+    #clock {
+      display: flex;
+      align-items: baseline;
+      justify-content: center;
+      gap: 0.22em;
+      white-space: nowrap;
+      font-family: "Anthropic Sans", sans-serif;
+      font-size: min(15vw, 31vh);
+      font-weight: 400;
+      font-variant-numeric: tabular-nums;
+      line-height: 1;
+    }
+    #period { font-size: 0.27em; }
+    #controls {
+      position: fixed;
+      bottom: max(24px, env(safe-area-inset-bottom));
+      right: max(24px, env(safe-area-inset-right));
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      max-width: calc(100vw - 48px);
+      transition: opacity 0.7s ease;
+    }
+    #fullscreen, #font-selector {
+      min-width: 0;
+      padding: 10px 16px;
+      border: 1px solid #555;
+      border-radius: 8px;
+      color: #ddd;
+      background: #141414;
+      font: 400 14px "Anthropic Sans", sans-serif;
+      cursor: pointer;
+      transition: opacity 0.7s ease;
+    }
+    #font-selector { width: 220px; max-width: 45vw; color-scheme: dark; }
+    #controls.hidden { opacity: 0; pointer-events: none; }
+    #controls:has(:focus-visible) { opacity: 1; pointer-events: auto; }
+    #controls :focus-visible { outline: 2px solid #fff; outline-offset: 4px; }
+    @media (prefers-reduced-motion: reduce) { #controls, #fullscreen, #font-selector { transition: none; } }
+  
+    body { height: 100dvh; min-height: 0; padding: calc(env(safe-area-inset-top, 0px) + 16px) calc(env(safe-area-inset-right, 0px) + 16px) calc(env(safe-area-inset-bottom, 0px) + 16px) calc(env(safe-area-inset-left, 0px) + 16px); }
+    #clock { width: max-content; }
+    #controls { bottom: calc(env(safe-area-inset-bottom, 0px) + 16px); right: calc(env(safe-area-inset-right, 0px) + 16px); left: calc(env(safe-area-inset-left, 0px) + 16px); max-width: none; flex-wrap: wrap; justify-content: flex-end; }
+    #font-selector, #fullscreen { min-height: 44px; font-size: 16px; }
+    #font-selector { max-width: 100%; flex: 0 1 220px; }
+    #offline-status { flex-basis: 100%; text-align: right; font: 12px sans-serif; color: #999; }
+    [hidden] { display: none !important; }
+  </style>
+</head>
+<body>
+  <main id="clock" role="timer" aria-label="Current local time" aria-live="off">
+    <span id="time">00:00:00</span><span id="period">AM</span>
+  </main>
+  <div id="controls">
+    <select id="font-selector" aria-label="Clock font">
+      <option value="AnthropicSans-Text-Regular-Static.otf" data-family="Anthropic Sans">Anthropic Sans (original)</option>
+      <option value="Ac437_Acer_VGA_8x8.ttf" data-family="ClockFont004">Ac437 Acer VGA 8x8</option>
+      <option value="Ac437_Acer_VGA_8x8-2y.ttf" data-family="ClockFont003">Ac437 Acer VGA 8x8-2y</option>
+      <option value="Ac437_Acer_VGA_9x8.ttf" data-family="ClockFont005">Ac437 Acer VGA 9x8</option>
+      <option value="Ac437_Acer710_CGA.ttf" data-family="ClockFont001">Ac437 Acer710 CGA</option>
+      <option value="Ac437_Acer710_CGA-2y.ttf" data-family="ClockFont000">Ac437 Acer710 CGA-2y</option>
+      <option value="Ac437_Acer710_Mono.ttf" data-family="ClockFont002">Ac437 Acer710 Mono</option>
+      <option value="Ac437_ACM_VGA_8x14.ttf" data-family="ClockFont006">Ac437 ACM VGA 8x14</option>
+      <option value="Ac437_ACM_VGA_8x16.ttf" data-family="ClockFont007">Ac437 ACM VGA 8x16</option>
+      <option value="Ac437_ACM_VGA_8x8.ttf" data-family="ClockFont008">Ac437 ACM VGA 8x8</option>
+      <option value="Ac437_ACM_VGA_9x14.ttf" data-family="ClockFont009">Ac437 ACM VGA 9x14</option>
+      <option value="Ac437_ACM_VGA_9x16.ttf" data-family="ClockFont010">Ac437 ACM VGA 9x16</option>
+      <option value="Ac437_ACM_VGA_9x8.ttf" data-family="ClockFont011">Ac437 ACM VGA 9x8</option>
+      <option value="Ac437_AMI_EGA_8x14.ttf" data-family="ClockFont012">Ac437 AMI EGA 8x14</option>
+      <option value="Ac437_AMI_EGA_8x8.ttf" data-family="ClockFont014">Ac437 AMI EGA 8x8</option>
+      <option value="Ac437_AMI_EGA_8x8-2y.ttf" data-family="ClockFont013">Ac437 AMI EGA 8x8-2y</option>
+      <option value="Ac437_AMI_EGA_9x14.ttf" data-family="ClockFont015">Ac437 AMI EGA 9x14</option>
+      <option value="Ac437_Amstrad_PC.ttf" data-family="ClockFont017">Ac437 Amstrad PC</option>
+      <option value="Ac437_Amstrad_PC-2y.ttf" data-family="ClockFont016">Ac437 Amstrad PC-2y</option>
+      <option value="Ac437_Apricot_200L.ttf" data-family="ClockFont019">Ac437 Apricot 200L</option>
+      <option value="Ac437_Apricot_200L-2y.ttf" data-family="ClockFont018">Ac437 Apricot 200L-2y</option>
+      <option value="Ac437_Apricot_Mono.ttf" data-family="ClockFont020">Ac437 Apricot Mono</option>
+      <option value="Ac437_ApricotPortable.ttf" data-family="ClockFont021">Ac437 ApricotPortable</option>
+      <option value="Ac437_ApricotXenC.ttf" data-family="ClockFont022">Ac437 ApricotXenC</option>
+      <option value="Ac437_ATT_PC6300.ttf" data-family="ClockFont032">Ac437 AT&amp;T PC6300</option>
+      <option value="Ac437_ATT_PC6300-2x.ttf" data-family="ClockFont031">Ac437 AT&amp;T PC6300-2x</option>
+      <option value="Ac437_ATI_8x14.ttf" data-family="ClockFont023">Ac437 ATI 8x14</option>
+      <option value="Ac437_ATI_8x16.ttf" data-family="ClockFont024">Ac437 ATI 8x16</option>
+      <option value="Ac437_ATI_8x8.ttf" data-family="ClockFont026">Ac437 ATI 8x8</option>
+      <option value="Ac437_ATI_8x8-2y.ttf" data-family="ClockFont025">Ac437 ATI 8x8-2y</option>
+      <option value="Ac437_ATI_9x14.ttf" data-family="ClockFont027">Ac437 ATI 9x14</option>
+      <option value="Ac437_ATI_9x16.ttf" data-family="ClockFont028">Ac437 ATI 9x16</option>
+      <option value="Ac437_ATI_9x8.ttf" data-family="ClockFont029">Ac437 ATI 9x8</option>
+      <option value="Ac437_ATI_SmallW_6x8.ttf" data-family="ClockFont030">Ac437 ATI SmallW 6x8</option>
+      <option value="Ac437_CL_EagleII_8x16.ttf" data-family="ClockFont033">Ac437 CL EagleII 8x16</option>
+      <option value="Ac437_CL_EagleII_9x16.ttf" data-family="ClockFont034">Ac437 CL EagleII 9x16</option>
+      <option value="Ac437_CL_EagleIII_8x16.ttf" data-family="ClockFont035">Ac437 CL EagleIII 8x16</option>
+      <option value="Ac437_CL_EagleIII_9x16.ttf" data-family="ClockFont036">Ac437 CL EagleIII 9x16</option>
+      <option value="Ac437_CompaqThin_8x14.ttf" data-family="ClockFont037">Ac437 CompaqThin 8x14</option>
+      <option value="Ac437_CompaqThin_8x16.ttf" data-family="ClockFont038">Ac437 CompaqThin 8x16</option>
+      <option value="Ac437_CompaqThin_8x8.ttf" data-family="ClockFont039">Ac437 CompaqThin 8x8</option>
+      <option value="Ac437_Compis.ttf" data-family="ClockFont040">Ac437 Compis</option>
+      <option value="Ac437_Copam_BIOS.ttf" data-family="ClockFont042">Ac437 Copam BIOS</option>
+      <option value="Ac437_Copam_BIOS-2y.ttf" data-family="ClockFont041">Ac437 Copam BIOS-2y</option>
+      <option value="Ac437_Cordata_PPC-21.ttf" data-family="ClockFont043">Ac437 Cordata PPC-21</option>
+      <option value="Ac437_Cordata_PPC-400.ttf" data-family="ClockFont044">Ac437 Cordata PPC-400</option>
+      <option value="Ac437_DG_One-2y_bold.ttf" data-family="ClockFont046">Ac437 DG On-2y Bold</option>
+      <option value="Ac437_DG_One_bold.ttf" data-family="ClockFont048">Ac437 DG One Bold</option>
+      <option value="Ac437_DG_One.ttf" data-family="ClockFont047">Ac437 DG One Regular</option>
+      <option value="Ac437_DG_One-2y.ttf" data-family="ClockFont045">Ac437 DG One-2y Regular</option>
+      <option value="Ac437_DTK_BIOS.ttf" data-family="ClockFont050">Ac437 DTK BIOS</option>
+      <option value="Ac437_DTK_BIOS-2y.ttf" data-family="ClockFont049">Ac437 DTK BIOS-2y</option>
+      <option value="Ac437_EagleSpCGA_Alt1.ttf" data-family="ClockFont052">Ac437 EagleSpCGA Alt1</option>
+      <option value="Ac437_EagleSpCGA_Alt1-2y.ttf" data-family="ClockFont051">Ac437 EagleSpCGA Alt1-2y</option>
+      <option value="Ac437_EagleSpCGA_Alt2.ttf" data-family="ClockFont054">Ac437 EagleSpCGA Alt2</option>
+      <option value="Ac437_EagleSpCGA_Alt2-2y.ttf" data-family="ClockFont053">Ac437 EagleSpCGA Alt2-2y</option>
+      <option value="Ac437_EagleSpCGA_Alt3.ttf" data-family="ClockFont056">Ac437 EagleSpCGA Alt3</option>
+      <option value="Ac437_EagleSpCGA_Alt3-2y.ttf" data-family="ClockFont055">Ac437 EagleSpCGA Alt3-2y</option>
+      <option value="Ac437_EpsonMGA.ttf" data-family="ClockFont058">Ac437 EpsonMGA</option>
+      <option value="Ac437_EpsonMGA_Alt.ttf" data-family="ClockFont060">Ac437 EpsonMGA Alt</option>
+      <option value="Ac437_EpsonMGA_Alt-2y.ttf" data-family="ClockFont059">Ac437 EpsonMGA Alt-2y</option>
+      <option value="Ac437_EpsonMGA_Mono.ttf" data-family="ClockFont061">Ac437 EpsonMGA Mono</option>
+      <option value="Ac437_EpsonMGA-2y.ttf" data-family="ClockFont057">Ac437 EpsonMGA-2y</option>
+      <option value="Ac437_EuroPC_CGA.ttf" data-family="ClockFont063">Ac437 EuroPC CGA</option>
+      <option value="Ac437_EuroPC_CGA-2y.ttf" data-family="ClockFont062">Ac437 EuroPC CGA-2y</option>
+      <option value="Ac437_EuroPC_Mono.ttf" data-family="ClockFont064">Ac437 EuroPC Mono</option>
+      <option value="Ac437_EverexME_5x8.ttf" data-family="ClockFont065">Ac437 EverexME 5x8</option>
+      <option value="Ac437_EverexME_7x8.ttf" data-family="ClockFont066">Ac437 EverexME 7x8</option>
+      <option value="Ac437_HP_150_re.ttf" data-family="ClockFont067">Ac437 HP 150 re.</option>
+      <option value="Ac437_IBM_3270pc.ttf" data-family="ClockFont068">Ac437 IBM 3270pc</option>
+      <option value="Ac437_IBM_BIOS.ttf" data-family="ClockFont071">Ac437 IBM BIOS</option>
+      <option value="Ac437_IBM_BIOS-2x.ttf" data-family="ClockFont069">Ac437 IBM BIOS-2x</option>
+      <option value="Ac437_IBM_BIOS-2y.ttf" data-family="ClockFont070">Ac437 IBM BIOS-2y</option>
+      <option value="Ac437_IBM_CGA.ttf" data-family="ClockFont073">Ac437 IBM CGA</option>
+      <option value="Ac437_IBM_CGA-2y.ttf" data-family="ClockFont072">Ac437 IBM CGA-2y</option>
+      <option value="Ac437_IBM_CGAthin.ttf" data-family="ClockFont075">Ac437 IBM CGAthin</option>
+      <option value="Ac437_IBM_CGAthin-2y.ttf" data-family="ClockFont074">Ac437 IBM CGAthin-2y</option>
+      <option value="Ac437_IBM_Conv.ttf" data-family="ClockFont078">Ac437 IBM Conv</option>
+      <option value="Ac437_IBM_Conv-2x.ttf" data-family="ClockFont076">Ac437 IBM Conv-2x</option>
+      <option value="Ac437_IBM_Conv-2y.ttf" data-family="ClockFont077">Ac437 IBM Conv-2y</option>
+      <option value="Ac437_IBM_DOS_ISO8.ttf" data-family="ClockFont080">Ac437 IBM DOS ISO8</option>
+      <option value="Ac437_IBM_DOS_ISO8-2x.ttf" data-family="ClockFont079">Ac437 IBM DOS ISO8-2x</option>
+      <option value="Ac437_IBM_DOS_ISO9.ttf" data-family="ClockFont082">Ac437 IBM DOS ISO9</option>
+      <option value="Ac437_IBM_DOS_ISO9-2x.ttf" data-family="ClockFont081">Ac437 IBM DOS ISO9-2x</option>
+      <option value="Ac437_IBM_EGA_8x14.ttf" data-family="ClockFont084">Ac437 IBM EGA 8x14</option>
+      <option value="Ac437_IBM_EGA_8x14-2x.ttf" data-family="ClockFont083">Ac437 IBM EGA 8x14-2x</option>
+      <option value="Ac437_IBM_EGA_8x8.ttf" data-family="ClockFont086">Ac437 IBM EGA 8x8</option>
+      <option value="Ac437_IBM_EGA_8x8-2x.ttf" data-family="ClockFont085">Ac437 IBM EGA 8x8-2x</option>
+      <option value="Ac437_IBM_EGA_9x14.ttf" data-family="ClockFont088">Ac437 IBM EGA 9x14</option>
+      <option value="Ac437_IBM_EGA_9x14-2x.ttf" data-family="ClockFont087">Ac437 IBM EGA 9x14-2x</option>
+      <option value="Ac437_IBM_EGA_9x8.ttf" data-family="ClockFont090">Ac437 IBM EGA 9x8</option>
+      <option value="Ac437_IBM_EGA_9x8-2x.ttf" data-family="ClockFont089">Ac437 IBM EGA 9x8-2x</option>
+      <option value="Ac437_IBM_MDA.ttf" data-family="ClockFont091">Ac437 IBM MDA</option>
+      <option value="Ac437_IBM_Model30r0.ttf" data-family="ClockFont093">Ac437 IBM Model30r0</option>
+      <option value="Ac437_IBM_Model30r0-2x.ttf" data-family="ClockFont092">Ac437 IBM Model30r0-2x</option>
+      <option value="Ac437_IBM_Model3x_Alt1.ttf" data-family="ClockFont094">Ac437 IBM Model3x Alt1</option>
+      <option value="Ac437_IBM_Model3x_Alt2.ttf" data-family="ClockFont095">Ac437 IBM Model3x Alt2</option>
+      <option value="Ac437_IBM_Model3x_Alt3.ttf" data-family="ClockFont096">Ac437 IBM Model3x Alt3</option>
+      <option value="Ac437_IBM_Model3x_Alt4.ttf" data-family="ClockFont097">Ac437 IBM Model3x Alt4</option>
+      <option value="Ac437_IBM_PGC.ttf" data-family="ClockFont099">Ac437 IBM PGC</option>
+      <option value="Ac437_IBM_PGC-2x.ttf" data-family="ClockFont098">Ac437 IBM PGC-2x</option>
+      <option value="Ac437_IBM_VGA_8x14.ttf" data-family="ClockFont101">Ac437 IBM VGA 8x14</option>
+      <option value="Ac437_IBM_VGA_8x14-2x.ttf" data-family="ClockFont100">Ac437 IBM VGA 8x14-2x</option>
+      <option value="Ac437_IBM_VGA_8x16.ttf" data-family="ClockFont103">Ac437 IBM VGA 8x16</option>
+      <option value="Ac437_IBM_VGA_8x16-2x.ttf" data-family="ClockFont102">Ac437 IBM VGA 8x16-2x</option>
+      <option value="Ac437_IBM_VGA_9x14.ttf" data-family="ClockFont105">Ac437 IBM VGA 9x14</option>
+      <option value="Ac437_IBM_VGA_9x14-2x.ttf" data-family="ClockFont104">Ac437 IBM VGA 9x14-2x</option>
+      <option value="Ac437_IBM_VGA_9x16.ttf" data-family="ClockFont107">Ac437 IBM VGA 9x16</option>
+      <option value="Ac437_IBM_VGA_9x16-2x.ttf" data-family="ClockFont106">Ac437 IBM VGA 9x16-2x</option>
+      <option value="Ac437_IBM_VGA_9x8.ttf" data-family="ClockFont109">Ac437 IBM VGA 9x8</option>
+      <option value="Ac437_IBM_VGA_9x8-2x.ttf" data-family="ClockFont108">Ac437 IBM VGA 9x8-2x</option>
+      <option value="Ac437_IGS_VGA_8x16.ttf" data-family="ClockFont110">Ac437 IGS VGA 8x16</option>
+      <option value="Ac437_IGS_VGA_9x16.ttf" data-family="ClockFont111">Ac437 IGS VGA 9x16</option>
+      <option value="Ac437_ITT_Xtra.ttf" data-family="ClockFont113">Ac437 ITT Xtra</option>
+      <option value="Ac437_ITT_Xtra-2y.ttf" data-family="ClockFont112">Ac437 ITT Xtra-2y</option>
+      <option value="Ac437_Kaypro2K_G.ttf" data-family="ClockFont115">Ac437 Kaypro2K G</option>
+      <option value="Ac437_Kaypro2K_G-2y.ttf" data-family="ClockFont114">Ac437 Kaypro2K G-2y</option>
+      <option value="Ac437_LE_Model_D_CGA.ttf" data-family="ClockFont117">Ac437 LE Model D CGA</option>
+      <option value="Ac437_LE_Model_D_CGA-2y.ttf" data-family="ClockFont116">Ac437 LE Model D CGA-2y</option>
+      <option value="Ac437_LE_Model_D_Mono.ttf" data-family="ClockFont118">Ac437 LE Model D Mono</option>
+      <option value="Ac437_MBytePC230_8x16.ttf" data-family="ClockFont119">Ac437 MBytePC230 8x16</option>
+      <option value="Ac437_MBytePC230_CGA.ttf" data-family="ClockFont121">Ac437 MBytePC230 CGA</option>
+      <option value="Ac437_MBytePC230_CGA-2y.ttf" data-family="ClockFont120">Ac437 MBytePC230 CGA-2y</option>
+      <option value="Ac437_MBytePC230_EGA.ttf" data-family="ClockFont122">Ac437 MBytePC230 EGA</option>
+      <option value="Ac437_MBytePC230_Mono.ttf" data-family="ClockFont123">Ac437 MBytePC230 Mono</option>
+      <option value="Ac437_Mindset.ttf" data-family="ClockFont126">Ac437 Mindset</option>
+      <option value="Ac437_Mindset-2x.ttf" data-family="ClockFont124">Ac437 Mindset-2x</option>
+      <option value="Ac437_Mindset-2y.ttf" data-family="ClockFont125">Ac437 Mindset-2y</option>
+      <option value="Ac437_NEC_APC3_8x16.ttf" data-family="ClockFont128">Ac437 NEC APC3 8x16</option>
+      <option value="Ac437_NEC_APC3_8x16-2x.ttf" data-family="ClockFont127">Ac437 NEC APC3 8x16-2x</option>
+      <option value="Ac437_NEC_APC3_8x8.ttf" data-family="ClockFont130">Ac437 NEC APC3 8x8</option>
+      <option value="Ac437_NEC_APC3_8x8-2y.ttf" data-family="ClockFont129">Ac437 NEC APC3 8x8-2y</option>
+      <option value="Ac437_NEC_MultiSpeed_bold.ttf" data-family="ClockFont134">Ac437 NEC MultiSpeed Bold</option>
+      <option value="Ac437_NEC_MultiSpeed.ttf" data-family="ClockFont133">Ac437 NEC MultiSpeed Regular</option>
+      <option value="Ac437_NEC_MultiSpeed-2x_bold.ttf" data-family="ClockFont132">Ac437 NEC MultiSpeed-2x Bold</option>
+      <option value="Ac437_NEC_MultiSpeed-2x.ttf" data-family="ClockFont131">Ac437 NEC MultiSpeed-2x Regular</option>
+      <option value="Ac437_Nix8810_M15.ttf" data-family="ClockFont135">Ac437 Nix8810 M15</option>
+      <option value="Ac437_Nix8810_M16.ttf" data-family="ClockFont136">Ac437 Nix8810 M16</option>
+      <option value="Ac437_Nix8810_M35.ttf" data-family="ClockFont138">Ac437 Nix8810 M35</option>
+      <option value="Ac437_Nix8810_M35-2y.ttf" data-family="ClockFont137">Ac437 Nix8810 M35-2y</option>
+      <option value="Ac437_Olivetti_M15.ttf" data-family="ClockFont140">Ac437 Olivetti M15</option>
+      <option value="Ac437_Olivetti_M15-2y.ttf" data-family="ClockFont139">Ac437 Olivetti M15-2y</option>
+      <option value="Ac437_OlivettiThin_8x14.ttf" data-family="ClockFont141">Ac437 OlivettiThin 8x14</option>
+      <option value="Ac437_OlivettiThin_8x16.ttf" data-family="ClockFont142">Ac437 OlivettiThin 8x16</option>
+      <option value="Ac437_OlivettiThin_9x14.ttf" data-family="ClockFont143">Ac437 OlivettiThin 9x14</option>
+      <option value="Ac437_OlivettiThin_9x16.ttf" data-family="ClockFont144">Ac437 OlivettiThin 9x16</option>
+      <option value="Ac437_Paradise132_7x16.ttf" data-family="ClockFont145">Ac437 Paradise132 7x16</option>
+      <option value="Ac437_Paradise132_7x9.ttf" data-family="ClockFont146">Ac437 Paradise132 7x9</option>
+      <option value="Ac437_Phoenix_BIOS.ttf" data-family="ClockFont148">Ac437 Phoenix BIOS</option>
+      <option value="Ac437_Phoenix_BIOS-2y.ttf" data-family="ClockFont147">Ac437 Phoenix BIOS-2y</option>
+      <option value="Ac437_PhoenixEGA_8x14.ttf" data-family="ClockFont149">Ac437 PhoenixEGA 8x14</option>
+      <option value="Ac437_PhoenixEGA_8x16.ttf" data-family="ClockFont150">Ac437 PhoenixEGA 8x16</option>
+      <option value="Ac437_PhoenixEGA_8x8.ttf" data-family="ClockFont152">Ac437 PhoenixEGA 8x8</option>
+      <option value="Ac437_PhoenixEGA_8x8-2y.ttf" data-family="ClockFont151">Ac437 PhoenixEGA 8x8-2y</option>
+      <option value="Ac437_PhoenixEGA_9x14.ttf" data-family="ClockFont153">Ac437 PhoenixEGA 9x14</option>
+      <option value="Ac437_PhoenixVGA_8x14.ttf" data-family="ClockFont154">Ac437 PhoenixVGA 8x14</option>
+      <option value="Ac437_PhoenixVGA_8x16.ttf" data-family="ClockFont155">Ac437 PhoenixVGA 8x16</option>
+      <option value="Ac437_PhoenixVGA_8x8.ttf" data-family="ClockFont156">Ac437 PhoenixVGA 8x8</option>
+      <option value="Ac437_PhoenixVGA_9x14.ttf" data-family="ClockFont157">Ac437 PhoenixVGA 9x14</option>
+      <option value="Ac437_PhoenixVGA_9x16.ttf" data-family="ClockFont158">Ac437 PhoenixVGA 9x16</option>
+      <option value="Ac437_PhoenixVGA_9x8.ttf" data-family="ClockFont159">Ac437 PhoenixVGA 9x8</option>
+      <option value="Ac437_Rainbow100_re_132.ttf" data-family="ClockFont160">Ac437 Rainbow100 re.132</option>
+      <option value="Ac437_Rainbow100_re_66.ttf" data-family="ClockFont161">Ac437 Rainbow100 re.66</option>
+      <option value="Ac437_Robotron_A7100.ttf" data-family="ClockFont162">Ac437 Robotron A7100</option>
+      <option value="Ac437_SanyoMBC16.ttf" data-family="ClockFont164">Ac437 SanyoMBC16</option>
+      <option value="Ac437_SanyoMBC16-2y.ttf" data-family="ClockFont163">Ac437 SanyoMBC16-2y</option>
+      <option value="Ac437_SanyoMBC55x.ttf" data-family="ClockFont166">Ac437 SanyoMBC55x</option>
+      <option value="Ac437_SanyoMBC55x-2y.ttf" data-family="ClockFont165">Ac437 SanyoMBC55x-2y</option>
+      <option value="Ac437_SanyoMBC775.ttf" data-family="ClockFont168">Ac437 SanyoMBC775</option>
+      <option value="Ac437_SanyoMBC775-2y.ttf" data-family="ClockFont167">Ac437 SanyoMBC775-2y</option>
+      <option value="Ac437_SeequaCm.ttf" data-family="ClockFont170">Ac437 SeequaCm</option>
+      <option value="Ac437_SeequaCm-2y.ttf" data-family="ClockFont169">Ac437 SeequaCm-2y</option>
+      <option value="Ac437_Siemens_PC-D.ttf" data-family="ClockFont171">Ac437 Siemens PC-D</option>
+      <option value="Ac437_Sigma_RM_8x14.ttf" data-family="ClockFont172">Ac437 Sigma RM 8x14</option>
+      <option value="Ac437_Sigma_RM_8x16.ttf" data-family="ClockFont173">Ac437 Sigma RM 8x16</option>
+      <option value="Ac437_Sigma_RM_8x8.ttf" data-family="ClockFont174">Ac437 Sigma RM 8x8</option>
+      <option value="Ac437_Sigma_RM_9x14.ttf" data-family="ClockFont175">Ac437 Sigma RM 9x14</option>
+      <option value="Ac437_Sigma_RM_9x16.ttf" data-family="ClockFont176">Ac437 Sigma RM 9x16</option>
+      <option value="Ac437_Sigma_RM_9x8.ttf" data-family="ClockFont177">Ac437 Sigma RM 9x8</option>
+      <option value="Ac437_SperryPC_8x16.ttf" data-family="ClockFont178">Ac437 SperryPC 8x16</option>
+      <option value="Ac437_SperryPC_CGA.ttf" data-family="ClockFont180">Ac437 SperryPC CGA</option>
+      <option value="Ac437_SperryPC_CGA-2y.ttf" data-family="ClockFont179">Ac437 SperryPC CGA-2y</option>
+      <option value="Ac437_STB_AutoEGA_8x14.ttf" data-family="ClockFont181">Ac437 STB AutoEGA 8x14</option>
+      <option value="Ac437_STB_AutoEGA_9x14.ttf" data-family="ClockFont182">Ac437 STB AutoEGA 9x14</option>
+      <option value="Ac437_Tandy1K-I_200L.ttf" data-family="ClockFont185">Ac437 Tandy1K-I 200L</option>
+      <option value="Ac437_Tandy1K-I_200L-2x.ttf" data-family="ClockFont183">Ac437 Tandy1K-I 200L-2x</option>
+      <option value="Ac437_Tandy1K-I_200L-2y.ttf" data-family="ClockFont184">Ac437 Tandy1K-I 200L-2y</option>
+      <option value="Ac437_Tandy1K-II_200L.ttf" data-family="ClockFont188">Ac437 Tandy1K-II 200L</option>
+      <option value="Ac437_Tandy1K-II_200L-2x.ttf" data-family="ClockFont186">Ac437 Tandy1K-II 200L-2x</option>
+      <option value="Ac437_Tandy1K-II_200L-2y.ttf" data-family="ClockFont187">Ac437 Tandy1K-II 200L-2y</option>
+      <option value="Ac437_Tandy1K-II_Mono.ttf" data-family="ClockFont189">Ac437 Tandy1K-II Mono</option>
+      <option value="Ac437_Tandy2K.ttf" data-family="ClockFont191">Ac437 Tandy2K</option>
+      <option value="Ac437_Tandy2K_G.ttf" data-family="ClockFont194">Ac437 Tandy2K G</option>
+      <option value="Ac437_Tandy2K_G-2x.ttf" data-family="ClockFont192">Ac437 Tandy2K G-2x</option>
+      <option value="Ac437_Tandy2K_G-TV.ttf" data-family="ClockFont193">Ac437 Tandy2K G-TV</option>
+      <option value="Ac437_Tandy2K-2x.ttf" data-family="ClockFont190">Ac437 Tandy2K-2x</option>
+      <option value="Ac437_Ti_Pro.ttf" data-family="ClockFont195">Ac437 Ti Pro</option>
+      <option value="Ac437_ToshibaSat_8x14.ttf" data-family="ClockFont196">Ac437 ToshibaSat 8x14</option>
+      <option value="Ac437_ToshibaSat_8x16.ttf" data-family="ClockFont197">Ac437 ToshibaSat 8x16</option>
+      <option value="Ac437_ToshibaSat_8x8.ttf" data-family="ClockFont198">Ac437 ToshibaSat 8x8</option>
+      <option value="Ac437_ToshibaSat_9x14.ttf" data-family="ClockFont199">Ac437 ToshibaSat 9x14</option>
+      <option value="Ac437_ToshibaSat_9x16.ttf" data-family="ClockFont200">Ac437 ToshibaSat 9x16</option>
+      <option value="Ac437_ToshibaSat_9x8.ttf" data-family="ClockFont201">Ac437 ToshibaSat 9x8</option>
+      <option value="Ac437_ToshibaT300_8x16.ttf" data-family="ClockFont202">Ac437 ToshibaT300 8x16</option>
+      <option value="Ac437_ToshibaT300_8x8.ttf" data-family="ClockFont204">Ac437 ToshibaT300 8x8</option>
+      <option value="Ac437_ToshibaT300_8x8-2y.ttf" data-family="ClockFont203">Ac437 ToshibaT300 8x8-2y</option>
+      <option value="Ac437_ToshibaTxL1_8x16.ttf" data-family="ClockFont205">Ac437 ToshibaTxL1 8x16</option>
+      <option value="Ac437_ToshibaTxL1_8x8.ttf" data-family="ClockFont206">Ac437 ToshibaTxL1 8x8</option>
+      <option value="Ac437_ToshibaTxL2_8x16.ttf" data-family="ClockFont207">Ac437 ToshibaTxL2 8x16</option>
+      <option value="Ac437_ToshibaTxL2_8x8.ttf" data-family="ClockFont208">Ac437 ToshibaTxL2 8x8</option>
+      <option value="Ac437_Trident_8x11.ttf" data-family="ClockFont209">Ac437 Trident 8x11</option>
+      <option value="Ac437_Trident_8x14.ttf" data-family="ClockFont210">Ac437 Trident 8x14</option>
+      <option value="Ac437_Trident_8x16.ttf" data-family="ClockFont211">Ac437 Trident 8x16</option>
+      <option value="Ac437_Trident_8x8.ttf" data-family="ClockFont212">Ac437 Trident 8x8</option>
+      <option value="Ac437_Trident_9x14.ttf" data-family="ClockFont213">Ac437 Trident 9x14</option>
+      <option value="Ac437_Trident_9x16.ttf" data-family="ClockFont214">Ac437 Trident 9x16</option>
+      <option value="Ac437_Trident_9x8.ttf" data-family="ClockFont215">Ac437 Trident 9x8</option>
+      <option value="Ac437_TridentEarly_8x11.ttf" data-family="ClockFont216">Ac437 TridentEarly 8x11</option>
+      <option value="Ac437_TridentEarly_8x14.ttf" data-family="ClockFont217">Ac437 TridentEarly 8x14</option>
+      <option value="Ac437_TridentEarly_8x16.ttf" data-family="ClockFont218">Ac437 TridentEarly 8x16</option>
+      <option value="Ac437_TridentEarly_8x8.ttf" data-family="ClockFont219">Ac437 TridentEarly 8x8</option>
+      <option value="Ac437_TridentEarly_9x14.ttf" data-family="ClockFont220">Ac437 TridentEarly 9x14</option>
+      <option value="Ac437_TridentEarly_9x16.ttf" data-family="ClockFont221">Ac437 TridentEarly 9x16</option>
+      <option value="Ac437_TridentEarly_9x8.ttf" data-family="ClockFont222">Ac437 TridentEarly 9x8</option>
+      <option value="Ac437_TsengEVA_132_6x14.ttf" data-family="ClockFont223">Ac437 TsengEVA 132 6x14</option>
+      <option value="Ac437_TsengEVA_132_6x8.ttf" data-family="ClockFont224">Ac437 TsengEVA 132 6x8</option>
+      <option value="Ac437_Verite_8x14.ttf" data-family="ClockFont225">Ac437 Verite 8x14</option>
+      <option value="Ac437_Verite_8x16.ttf" data-family="ClockFont226">Ac437 Verite 8x16</option>
+      <option value="Ac437_Verite_8x8.ttf" data-family="ClockFont228">Ac437 Verite 8x8</option>
+      <option value="Ac437_Verite_8x8-2y.ttf" data-family="ClockFont227">Ac437 Verite 8x8-2y</option>
+      <option value="Ac437_Verite_9x14.ttf" data-family="ClockFont229">Ac437 Verite 9x14</option>
+      <option value="Ac437_Verite_9x16.ttf" data-family="ClockFont230">Ac437 Verite 9x16</option>
+      <option value="Ac437_Verite_9x8.ttf" data-family="ClockFont231">Ac437 Verite 9x8</option>
+      <option value="Ac437_VTech_BIOS.ttf" data-family="ClockFont233">Ac437 VTech BIOS</option>
+      <option value="Ac437_VTech_BIOS-2y.ttf" data-family="ClockFont232">Ac437 VTech BIOS-2y</option>
+      <option value="Ac437_Wyse700a.ttf" data-family="ClockFont235">Ac437 Wyse700a</option>
+      <option value="Ac437_Wyse700a-2y.ttf" data-family="ClockFont234">Ac437 Wyse700a-2y</option>
+      <option value="Ac437_Wyse700b.ttf" data-family="ClockFont237">Ac437 Wyse700b</option>
+      <option value="Ac437_Wyse700b-2y.ttf" data-family="ClockFont236">Ac437 Wyse700b-2y</option>
+      <option value="AcPlus_Amstrad_PC.ttf" data-family="ClockFont239">AcPlus Amstrad PC</option>
+      <option value="AcPlus_Amstrad_PC-2y.ttf" data-family="ClockFont238">AcPlus Amstrad PC-2y</option>
+      <option value="AcPlus_AST_PremiumExec.ttf" data-family="ClockFont240">AcPlus AST PremiumExec</option>
+      <option value="AcPlus_Cordata_PPC-21.ttf" data-family="ClockFont241">AcPlus Cordata PPC-21</option>
+      <option value="AcPlus_Cordata_PPC-400.ttf" data-family="ClockFont242">AcPlus Cordata PPC-400</option>
+      <option value="AcPlus_HP_150_re.ttf" data-family="ClockFont243">AcPlus HP 150 re.</option>
+      <option value="AcPlus_IBM_BIOS.ttf" data-family="ClockFont246">AcPlus IBM BIOS</option>
+      <option value="AcPlus_IBM_BIOS-2x.ttf" data-family="ClockFont244">AcPlus IBM BIOS-2x</option>
+      <option value="AcPlus_IBM_BIOS-2y.ttf" data-family="ClockFont245">AcPlus IBM BIOS-2y</option>
+      <option value="AcPlus_IBM_CGA.ttf" data-family="ClockFont248">AcPlus IBM CGA</option>
+      <option value="AcPlus_IBM_CGA-2y.ttf" data-family="ClockFont247">AcPlus IBM CGA-2y</option>
+      <option value="AcPlus_IBM_CGAthin.ttf" data-family="ClockFont250">AcPlus IBM CGAthin</option>
+      <option value="AcPlus_IBM_CGAthin-2y.ttf" data-family="ClockFont249">AcPlus IBM CGAthin-2y</option>
+      <option value="AcPlus_IBM_EGA_8x14.ttf" data-family="ClockFont252">AcPlus IBM EGA 8x14</option>
+      <option value="AcPlus_IBM_EGA_8x14-2x.ttf" data-family="ClockFont251">AcPlus IBM EGA 8x14-2x</option>
+      <option value="AcPlus_IBM_EGA_8x8.ttf" data-family="ClockFont254">AcPlus IBM EGA 8x8</option>
+      <option value="AcPlus_IBM_EGA_8x8-2x.ttf" data-family="ClockFont253">AcPlus IBM EGA 8x8-2x</option>
+      <option value="AcPlus_IBM_EGA_9x14.ttf" data-family="ClockFont256">AcPlus IBM EGA 9x14</option>
+      <option value="AcPlus_IBM_EGA_9x14-2x.ttf" data-family="ClockFont255">AcPlus IBM EGA 9x14-2x</option>
+      <option value="AcPlus_IBM_EGA_9x8.ttf" data-family="ClockFont258">AcPlus IBM EGA 9x8</option>
+      <option value="AcPlus_IBM_EGA_9x8-2x.ttf" data-family="ClockFont257">AcPlus IBM EGA 9x8-2x</option>
+      <option value="AcPlus_IBM_MDA.ttf" data-family="ClockFont259">AcPlus IBM MDA</option>
+      <option value="AcPlus_IBM_VGA_8x14.ttf" data-family="ClockFont261">AcPlus IBM VGA 8x14</option>
+      <option value="AcPlus_IBM_VGA_8x14-2x.ttf" data-family="ClockFont260">AcPlus IBM VGA 8x14-2x</option>
+      <option value="AcPlus_IBM_VGA_8x16.ttf" data-family="ClockFont263">AcPlus IBM VGA 8x16</option>
+      <option value="AcPlus_IBM_VGA_8x16-2x.ttf" data-family="ClockFont262">AcPlus IBM VGA 8x16-2x</option>
+      <option value="AcPlus_IBM_VGA_9x14.ttf" data-family="ClockFont265">AcPlus IBM VGA 9x14</option>
+      <option value="AcPlus_IBM_VGA_9x14-2x.ttf" data-family="ClockFont264">AcPlus IBM VGA 9x14-2x</option>
+      <option value="AcPlus_IBM_VGA_9x16.ttf" data-family="ClockFont267">AcPlus IBM VGA 9x16</option>
+      <option value="AcPlus_IBM_VGA_9x16-2x.ttf" data-family="ClockFont266">AcPlus IBM VGA 9x16-2x</option>
+      <option value="AcPlus_IBM_VGA_9x8.ttf" data-family="ClockFont269">AcPlus IBM VGA 9x8</option>
+      <option value="AcPlus_IBM_VGA_9x8-2x.ttf" data-family="ClockFont268">AcPlus IBM VGA 9x8-2x</option>
+      <option value="AcPlus_Rainbow100_re_132.ttf" data-family="ClockFont270">AcPlus Rainbow100 re.132</option>
+      <option value="AcPlus_Rainbow100_re_66.ttf" data-family="ClockFont271">AcPlus Rainbow100 re.66</option>
+      <option value="AcPlus_Tandy1K-II_200L.ttf" data-family="ClockFont274">AcPlus Tandy1K-II 200L</option>
+      <option value="AcPlus_Tandy1K-II_200L-2x.ttf" data-family="ClockFont272">AcPlus Tandy1K-II 200L-2x</option>
+      <option value="AcPlus_Tandy1K-II_200L-2y.ttf" data-family="ClockFont273">AcPlus Tandy1K-II 200L-2y</option>
+      <option value="AcPlus_ToshibaSat_8x14.ttf" data-family="ClockFont275">AcPlus ToshibaSat 8x14</option>
+      <option value="AcPlus_ToshibaSat_8x16.ttf" data-family="ClockFont276">AcPlus ToshibaSat 8x16</option>
+      <option value="AcPlus_ToshibaSat_8x8.ttf" data-family="ClockFont277">AcPlus ToshibaSat 8x8</option>
+      <option value="AcPlus_ToshibaSat_9x14.ttf" data-family="ClockFont278">AcPlus ToshibaSat 9x14</option>
+      <option value="AcPlus_ToshibaSat_9x16.ttf" data-family="ClockFont279">AcPlus ToshibaSat 9x16</option>
+      <option value="AcPlus_ToshibaSat_9x8.ttf" data-family="ClockFont280">AcPlus ToshibaSat 9x8</option>
+      <option value="AcPlus_ToshibaTxL1_8x16.ttf" data-family="ClockFont281">AcPlus ToshibaTxL1 8x16</option>
+      <option value="AcPlus_ToshibaTxL2_8x16.ttf" data-family="ClockFont282">AcPlus ToshibaTxL2 8x16</option>
+      <option value="AlexBrush-Regular.ttf" data-family="ClockFont283">Alex Brush</option>
+      <option value="Alien.ttf" data-family="ClockFont284">Alien</option>
+      <option value="AnthropicSans-Display-Bold-Static.otf" data-family="ClockFont285">Anthropic Sans Display Bold</option>
+      <option value="AnthropicSans-Display-BoldItalic-Static.otf" data-family="ClockFont286">Anthropic Sans Display Bold Italic</option>
+      <option value="AnthropicSans-Display-Extrabold-Static.otf" data-family="ClockFont287">Anthropic Sans Display Extrabold</option>
+      <option value="AnthropicSans-Display-ExtraboldItalic-Static.otf" data-family="ClockFont288">Anthropic Sans Display Extrabold Italic</option>
+      <option value="AnthropicSans-Display-RegularItalic-Static.otf" data-family="ClockFont293">Anthropic Sans Display Italic</option>
+      <option value="AnthropicSans-Display-Light-Static.otf" data-family="ClockFont289">Anthropic Sans Display Light</option>
+      <option value="AnthropicSans-Display-Medium-Static.otf" data-family="ClockFont290">Anthropic Sans Display Medium</option>
+      <option value="AnthropicSans-Display-MediumItalic-Static.otf" data-family="ClockFont291">Anthropic Sans Display Medium Italic</option>
+      <option value="AnthropicSans-Display-Regular-Static.otf" data-family="ClockFont292">Anthropic Sans Display Regular</option>
+      <option value="AnthropicSans-Display-Semibold-Static.otf" data-family="ClockFont294">Anthropic Sans Display Semibold</option>
+      <option value="AnthropicSans-Text-Bold-Static.otf" data-family="ClockFont295">Anthropic Sans Text Bold</option>
+      <option value="AnthropicSans-Text-BoldItalic-Static.otf" data-family="ClockFont296">Anthropic Sans Text Bold Italic</option>
+      <option value="AnthropicSans-Text-Extrabold-Static.otf" data-family="ClockFont297">Anthropic Sans Text Extrabold</option>
+      <option value="AnthropicSans-Text-ExtraboldItalic-Static.otf" data-family="ClockFont298">Anthropic Sans Text Extrabold Italic</option>
+      <option value="AnthropicSans-Text-RegularItalic-Static.otf" data-family="ClockFont303">Anthropic Sans Text Italic</option>
+      <option value="AnthropicSans-Text-Light-Static.otf" data-family="ClockFont299">Anthropic Sans Text Light</option>
+      <option value="AnthropicSans-Text-Medium-Static.otf" data-family="ClockFont300">Anthropic Sans Text Medium</option>
+      <option value="AnthropicSans-Text-MediumItalic-Static.otf" data-family="ClockFont301">Anthropic Sans Text Medium Italic</option>
+      <option value="AnthropicSans-Text-Semibold-Static.otf" data-family="ClockFont304">Anthropic Sans Text Semibold</option>
+      <option value="AnthropicSerif-Display-Bold-Static.otf" data-family="ClockFont305">Anthropic Serif Display Bold</option>
+      <option value="AnthropicSerif-Display-BoldItalic-Static.otf" data-family="ClockFont306">Anthropic Serif Display Bold Italic</option>
+      <option value="AnthropicSerif-Display-Extrabold-Static.otf" data-family="ClockFont307">Anthropic Serif Display Extrabold</option>
+      <option value="AnthropicSerif-Display-ExtraboldItalic-Static.otf" data-family="ClockFont308">Anthropic Serif Display Extrabold Italic</option>
+      <option value="AnthropicSerif-Display-RegularItalic-Static.otf" data-family="ClockFont314">Anthropic Serif Display Italic</option>
+      <option value="AnthropicSerif-Display-Light-Static.otf" data-family="ClockFont309">Anthropic Serif Display Light</option>
+      <option value="AnthropicSerif-Display-LightItalic-Static.otf" data-family="ClockFont310">Anthropic Serif Display Light Italic</option>
+      <option value="AnthropicSerif-Display-Medium-Static.otf" data-family="ClockFont311">Anthropic Serif Display Medium</option>
+      <option value="AnthropicSerif-Display-MediumItalic-Static.otf" data-family="ClockFont312">Anthropic Serif Display Medium Italic</option>
+      <option value="AnthropicSerif-Display-Regular-Static.otf" data-family="ClockFont313">Anthropic Serif Display Regular</option>
+      <option value="AnthropicSerif-Display-Semibold-Static.otf" data-family="ClockFont315">Anthropic Serif Display Semibold</option>
+      <option value="AnthropicSerif-Display-SemiboldItalic-Static.otf" data-family="ClockFont316">Anthropic Serif Display Semibold Italic</option>
+      <option value="AnthropicSerif-Text-Bold-Static.otf" data-family="ClockFont317">Anthropic Serif Text Bold</option>
+      <option value="AnthropicSerif-Text-BoldItalic-Static.otf" data-family="ClockFont318">Anthropic Serif Text Bold Italic</option>
+      <option value="AnthropicSerif-Text-Extrabold-Static.otf" data-family="ClockFont319">Anthropic Serif Text Extrabold</option>
+      <option value="AnthropicSerif-Text-ExtraboldItalic-Static.otf" data-family="ClockFont320">Anthropic Serif Text Extrabold Italic</option>
+      <option value="AnthropicSerif-Text-RegularItalic-Static.otf" data-family="ClockFont326">Anthropic Serif Text Italic</option>
+      <option value="AnthropicSerif-Text-Light-Static.otf" data-family="ClockFont321">Anthropic Serif Text Light</option>
+      <option value="AnthropicSerif-Text-LightItalic-Static.otf" data-family="ClockFont322">Anthropic Serif Text Light Italic</option>
+      <option value="AnthropicSerif-Text-Medium-Static.otf" data-family="ClockFont323">Anthropic Serif Text Medium</option>
+      <option value="AnthropicSerif-Text-MediumItalic-Static.otf" data-family="ClockFont324">Anthropic Serif Text Medium Italic</option>
+      <option value="AnthropicSerif-Text-Regular-Static.otf" data-family="ClockFont325">Anthropic Serif Text Regular</option>
+      <option value="AnthropicSerif-Text-Semibold-Static.otf" data-family="ClockFont327">Anthropic Serif Text Semibold</option>
+      <option value="AnthropicSerif-Text-SemiboldItalic-Static.otf" data-family="ClockFont328">Anthropic Serif Text Semibold Italic</option>
+      <option value="apercu_regular_pro.otf" data-family="ClockFont334">ApercuPro</option>
+      <option value="apercu_bold_pro.otf" data-family="ClockFont330">ApercuPro-Bold</option>
+      <option value="apercu_bold_italic_pro.otf" data-family="ClockFont329">ApercuPro-BoldItalic</option>
+      <option value="apercu_regular_italic_pro.otf" data-family="ClockFont333">ApercuPro-Italic</option>
+      <option value="apercu_medium_pro.otf" data-family="ClockFont332">ApercuPro-Medium</option>
+      <option value="apercu_medium_italic_pro.otf" data-family="ClockFont331">ApercuPro-MediumItalic</option>
+      <option value="Balloon Drop Shadow D Regular.ttf" data-family="ClockFont335">Balloon Drop Shadow D</option>
+      <option value="balloonextraboldregular.ttf" data-family="ClockFont336">Balloon Extra Bold Regular</option>
+      <option value="Baloo-Regular.ttf" data-family="ClockFont337">Baloo</option>
+      <option value="big_noodle_titling.ttf" data-family="ClockFont338">BigNoodleTitling</option>
+      <option value="big_noodle_titling_oblique.ttf" data-family="ClockFont339">BigNoodleTitling Oblique</option>
+      <option value="BlackOpsOne-Regular.ttf" data-family="ClockFont340">Black Ops One Regular</option>
+      <option value="Bungee-Regular.ttf" data-family="ClockFont341">Bungee</option>
+      <option value="BungeeInline-Regular.ttf" data-family="ClockFont342">Bungee Inline</option>
+      <option value="Candcu__.ttf" data-family="ClockFont343">Candy Cane (Unregistered)</option>
+      <option value="Century Gothic.ttf" data-family="ClockFont344">Century Gothic</option>
+      <option value="CHARCOAL.TTF" data-family="ClockFont345">Charcoal</option>
+      <option value="ChicagoFLF.ttf" data-family="ClockFont347">ChicagoFLF</option>
+      <option value="Christmas Bell - Personal Use.otf" data-family="ClockFont348">Christmas Bell - Personal Use</option>
+      <option value="Cinzel-Bold.ttf" data-family="ClockFont349">Cinzel Bold</option>
+      <option value="Demonstars-Regular.ttf" data-family="ClockFont350">Demon stars Regular</option>
+      <option value="DroidSansMono.ttf" data-family="ClockFont351">Droid Sans Mono</option>
+      <option value="CHE-DUST.TTF" data-family="ClockFont346">Dust Mites</option>
+      <option value="FKGroteskNeueTrial-Black-BF6576818b4c472.otf" data-family="ClockFont352">FK Grotesk Neue Trial Black</option>
+      <option value="FKGroteskNeueTrial-BlackItalic-BF6576818becb0d.otf" data-family="ClockFont353">FK Grotesk Neue Trial Black Italic</option>
+      <option value="FKGroteskNeueTrial-Bold-BF6576818bd3700.otf" data-family="ClockFont354">FK Grotesk Neue Trial Bold</option>
+      <option value="FKGroteskNeueTrial-BoldItalic-BF6576818c39d11.otf" data-family="ClockFont355">FK Grotesk Neue Trial Bold Italic</option>
+      <option value="FKGroteskNeueTrial-Italic-BF6576818c041e2.otf" data-family="ClockFont356">FK Grotesk Neue Trial Italic</option>
+      <option value="FKGroteskNeueTrial-Light-BF6576818c0f3e8.otf" data-family="ClockFont357">FK Grotesk Neue Trial Light</option>
+      <option value="FKGroteskNeueTrial-LightItalic-BF6576818c3183c.otf" data-family="ClockFont358">FK Grotesk Neue Trial Light Italic</option>
+      <option value="FKGroteskNeueTrial-Medium-BF6576818c3a00a.otf" data-family="ClockFont359">FK Grotesk Neue Trial Medium</option>
+      <option value="FKGroteskNeueTrial-MediumItalic-BF6576818c2aaf8.otf" data-family="ClockFont360">FK Grotesk Neue Trial Medium Italic</option>
+      <option value="FKGroteskNeueTrial-Regular-BF6576818c3af74.otf" data-family="ClockFont361">FK Grotesk Neue Trial Regular</option>
+      <option value="FKGroteskNeueTrial-Thin-BF6576818c2a14c.otf" data-family="ClockFont362">FK Grotesk Neue Trial Thin</option>
+      <option value="FKGroteskNeueTrial-ThinItalic-BF6576818c5cbd8.otf" data-family="ClockFont363">FK Grotesk Neue Trial Thin Italic</option>
+      <option value="Geist-VariableFont_wght.ttf" data-family="ClockFont364">Geist Regular</option>
+      <option value="GlutenVariable.ttf" data-family="ClockFont365">Gluten Thin</option>
+      <option value="GoogleSans-Italic-VariableFont_GRAD,opsz,wght.ttf" data-family="ClockFont366">Google Sans Italic</option>
+      <option value="GoogleSans-VariableFont_GRAD,opsz,wght.ttf" data-family="ClockFont367">Google Sans Regular</option>
+      <option value="Impact Label.ttf" data-family="ClockFont369">Impact Label</option>
+      <option value="Impact Label Reversed.ttf" data-family="ClockFont368">Impact Label Reversed</option>
+      <option value="InstrumentSerif-Italic.ttf" data-family="ClockFont370">Instrument Serif Italic</option>
+      <option value="InstrumentSerif-Regular.ttf" data-family="ClockFont371">Instrument Serif Regular</option>
+      <option value="Inter_18pt-Black.ttf" data-family="ClockFont374">Inter 18pt Black</option>
+      <option value="Inter_18pt-BlackItalic.ttf" data-family="ClockFont375">Inter 18pt Black Italic</option>
+      <option value="Inter_18pt-Bold.ttf" data-family="ClockFont376">Inter 18pt Bold</option>
+      <option value="Inter_18pt-BoldItalic.ttf" data-family="ClockFont377">Inter 18pt Bold Italic</option>
+      <option value="Inter_18pt-ExtraBold.ttf" data-family="ClockFont378">Inter 18pt ExtraBold</option>
+      <option value="Inter_18pt-ExtraBoldItalic.ttf" data-family="ClockFont379">Inter 18pt ExtraBold Italic</option>
+      <option value="Inter_18pt-ExtraLight.ttf" data-family="ClockFont380">Inter 18pt ExtraLight</option>
+      <option value="Inter_18pt-ExtraLightItalic.ttf" data-family="ClockFont381">Inter 18pt ExtraLight Italic</option>
+      <option value="Inter_18pt-Italic.ttf" data-family="ClockFont382">Inter 18pt Italic</option>
+      <option value="Inter_18pt-Light.ttf" data-family="ClockFont383">Inter 18pt Light</option>
+      <option value="Inter_18pt-LightItalic.ttf" data-family="ClockFont384">Inter 18pt Light Italic</option>
+      <option value="Inter_18pt-Medium.ttf" data-family="ClockFont385">Inter 18pt Medium</option>
+      <option value="Inter_18pt-MediumItalic.ttf" data-family="ClockFont386">Inter 18pt Medium Italic</option>
+      <option value="Inter_18pt-Regular.ttf" data-family="ClockFont387">Inter 18pt Regular</option>
+      <option value="Inter_18pt-SemiBold.ttf" data-family="ClockFont388">Inter 18pt SemiBold</option>
+      <option value="Inter_18pt-SemiBoldItalic.ttf" data-family="ClockFont389">Inter 18pt SemiBold Italic</option>
+      <option value="Inter_18pt-Thin.ttf" data-family="ClockFont390">Inter 18pt Thin</option>
+      <option value="Inter_18pt-ThinItalic.ttf" data-family="ClockFont391">Inter 18pt Thin Italic</option>
+      <option value="Inter_24pt-Black.ttf" data-family="ClockFont392">Inter 24pt Black</option>
+      <option value="Inter_24pt-BlackItalic.ttf" data-family="ClockFont393">Inter 24pt Black Italic</option>
+      <option value="Inter_24pt-Bold.ttf" data-family="ClockFont394">Inter 24pt Bold</option>
+      <option value="Inter_24pt-BoldItalic.ttf" data-family="ClockFont395">Inter 24pt Bold Italic</option>
+      <option value="Inter_24pt-ExtraBold.ttf" data-family="ClockFont396">Inter 24pt ExtraBold</option>
+      <option value="Inter_24pt-ExtraBoldItalic.ttf" data-family="ClockFont397">Inter 24pt ExtraBold Italic</option>
+      <option value="Inter_24pt-ExtraLight.ttf" data-family="ClockFont398">Inter 24pt ExtraLight</option>
+      <option value="Inter_24pt-ExtraLightItalic.ttf" data-family="ClockFont399">Inter 24pt ExtraLight Italic</option>
+      <option value="Inter_24pt-Italic.ttf" data-family="ClockFont400">Inter 24pt Italic</option>
+      <option value="Inter_24pt-Light.ttf" data-family="ClockFont401">Inter 24pt Light</option>
+      <option value="Inter_24pt-LightItalic.ttf" data-family="ClockFont402">Inter 24pt Light Italic</option>
+      <option value="Inter_24pt-Medium.ttf" data-family="ClockFont403">Inter 24pt Medium</option>
+      <option value="Inter_24pt-MediumItalic.ttf" data-family="ClockFont404">Inter 24pt Medium Italic</option>
+      <option value="Inter_24pt-Regular.ttf" data-family="ClockFont405">Inter 24pt Regular</option>
+      <option value="Inter_24pt-SemiBold.ttf" data-family="ClockFont406">Inter 24pt SemiBold</option>
+      <option value="Inter_24pt-SemiBoldItalic.ttf" data-family="ClockFont407">Inter 24pt SemiBold Italic</option>
+      <option value="Inter_24pt-Thin.ttf" data-family="ClockFont408">Inter 24pt Thin</option>
+      <option value="Inter_24pt-ThinItalic.ttf" data-family="ClockFont409">Inter 24pt Thin Italic</option>
+      <option value="Inter_28pt-Black.ttf" data-family="ClockFont410">Inter 28pt Black</option>
+      <option value="Inter_28pt-BlackItalic.ttf" data-family="ClockFont411">Inter 28pt Black Italic</option>
+      <option value="Inter_28pt-Bold.ttf" data-family="ClockFont412">Inter 28pt Bold</option>
+      <option value="Inter_28pt-BoldItalic.ttf" data-family="ClockFont413">Inter 28pt Bold Italic</option>
+      <option value="Inter_28pt-ExtraBold.ttf" data-family="ClockFont414">Inter 28pt ExtraBold</option>
+      <option value="Inter_28pt-ExtraBoldItalic.ttf" data-family="ClockFont415">Inter 28pt ExtraBold Italic</option>
+      <option value="Inter_28pt-ExtraLight.ttf" data-family="ClockFont416">Inter 28pt ExtraLight</option>
+      <option value="Inter_28pt-ExtraLightItalic.ttf" data-family="ClockFont417">Inter 28pt ExtraLight Italic</option>
+      <option value="Inter_28pt-Italic.ttf" data-family="ClockFont418">Inter 28pt Italic</option>
+      <option value="Inter_28pt-Light.ttf" data-family="ClockFont419">Inter 28pt Light</option>
+      <option value="Inter_28pt-LightItalic.ttf" data-family="ClockFont420">Inter 28pt Light Italic</option>
+      <option value="Inter_28pt-Medium.ttf" data-family="ClockFont421">Inter 28pt Medium</option>
+      <option value="Inter_28pt-MediumItalic.ttf" data-family="ClockFont422">Inter 28pt Medium Italic</option>
+      <option value="Inter_28pt-Regular.ttf" data-family="ClockFont423">Inter 28pt Regular</option>
+      <option value="Inter_28pt-SemiBold.ttf" data-family="ClockFont424">Inter 28pt SemiBold</option>
+      <option value="Inter_28pt-SemiBoldItalic.ttf" data-family="ClockFont425">Inter 28pt SemiBold Italic</option>
+      <option value="Inter_28pt-Thin.ttf" data-family="ClockFont426">Inter 28pt Thin</option>
+      <option value="Inter_28pt-ThinItalic.ttf" data-family="ClockFont427">Inter 28pt Thin Italic</option>
+      <option value="Inter-Italic-VariableFont_opsz,wght.ttf" data-family="ClockFont372">Inter Italic</option>
+      <option value="Inter-VariableFont_opsz,wght.ttf" data-family="ClockFont373">Inter Regular</option>
+      <option value="Kabel-Black.ttf" data-family="ClockFont428">Kabel-Black</option>
+      <option value="LeckerliOne-Regular.ttf" data-family="ClockFont429">Leckerli One</option>
+      <option value="LicensePlates.ttf" data-family="ClockFont430">LicensePlates</option>
+      <option value="Lora-VariableFont_wght.ttf" data-family="ClockFont431">Lora Regular</option>
+      <option value="MerryChristmasFlake.ttf" data-family="ClockFont432">Merry Christmas Flake</option>
+      <option value="MLTWNII_.ttf" data-family="ClockFont433">Miltown II</option>
+      <option value="MYRIADPRO-REGULAR.OTF" data-family="ClockFont434">MyriadPro-Regular</option>
+      <option value="NIRVANA.TTF" data-family="ClockFont435">Nirvana</option>
+      <option value="OPTIBalloonExtraBold.otf" data-family="ClockFont436">OPTIBalloonExtraBold</option>
+      <option value="OPTIBankGothic-Medium.otf" data-family="ClockFont437">OPTIBankGothic-Medium</option>
+      <option value="PermanentMarker.ttf" data-family="ClockFont438">Permanent Marker</option>
+      <option value="PLANK___.TTF" data-family="ClockFont439">Planet Kosmos</option>
+      <option value="PWHappyChristmas.ttf" data-family="ClockFont440">PWJoyeuxNoel</option>
+      <option value="Resolute NF W01 Regular.ttf" data-family="ClockFont441">Resolute NF W01 Regular</option>
+      <option value="Roboto-Regular.ttf" data-family="ClockFont442">Roboto</option>
+      <option value="Shrikhand-Regular.ttf" data-family="ClockFont443">Shrikhand Regular</option>
+      <option value="Skranji-Bold.ttf" data-family="ClockFont444">Skranji Bold</option>
+      <option value="Skyscapers.ttf" data-family="ClockFont445">Skyscapers</option>
+      <option value="SortsMillGoudy-Regular.ttf" data-family="ClockFont446">Sorts Mill Goudy Regular</option>
+      <option value="Soundgarden Badmotorfont.ttf" data-family="ClockFont447">Soundgarnden Badmotorfont</option>
+      <option value="SourceSerif4-VariableFont_opsz,wght.ttf" data-family="ClockFont448">Source Serif 4 Regular</option>
+      <option value="trebuc.ttf" data-family="ClockFont449">Trebuchet MS</option>
+    </select>
+    <span id="offline-status" role="status"></span>
+    <button id="fullscreen" type="button">Enter fullscreen</button>
+  </div>
+  <script>
+    const time = document.getElementById('time');
+    const period = document.getElementById('period');
+    const button = document.getElementById('fullscreen');
+    const controls = document.getElementById('controls');
+    const selector = document.getElementById('font-selector');
+    const clock = document.getElementById('clock');
+    // Fit the actual chosen font; unusual wide fonts must also stay inside safe areas.
+    function fitClock() {
+      const style = getComputedStyle(document.body);
+      const width = document.body.clientWidth - parseFloat(style.paddingLeft) - parseFloat(style.paddingRight);
+      const height = document.body.clientHeight - parseFloat(style.paddingTop) - parseFloat(style.paddingBottom);
+      const base = Math.min(width * .15, height * .31);
+      clock.style.fontSize = base + 'px';
+      const box = clock.getBoundingClientRect();
+      clock.style.fontSize = base * Math.min(1, width / box.width, height / box.height) * .98 + 'px';
+    }
+    window.addEventListener('resize', fitClock);
+    window.visualViewport?.addEventListener('resize', fitClock);
+    document.fonts?.addEventListener('loadingdone', fitClock);
+    const storageKey = 'offline-clock-selected-font';
+    function applyFont() {
+      clock.style.fontFamily = '"' + selector.selectedOptions[0].dataset.family + '", sans-serif';
+      requestAnimationFrame(fitClock);
+    }
+    try {
+      const saved = localStorage.getItem(storageKey);
+      if (saved && Array.from(selector.options).some(option => option.value === saved)) selector.value = saved;
+    } catch { /* Keep the clock working if browser storage is unavailable. */ }
+    applyFont();
+    selector.addEventListener('change', () => {
+      applyFont();
+      try { localStorage.setItem(storageKey, selector.value); } catch {}
+      revealButton();
+    });
+    const pad = number => String(number).padStart(2, '0');
+    let tickTimer;
+    function tick() {
+      clearTimeout(tickTimer);
+      const now = new Date();
+      time.textContent = `${now.getHours() % 12 || 12}:${pad(now.getMinutes())}:${pad(now.getSeconds())}`;
+      period.textContent = now.getHours() < 12 ? 'AM' : 'PM';
+      fitClock();
+      tickTimer = setTimeout(tick, 1000 - Date.now() % 1000);
+    }
+    tick();
+    document.addEventListener("visibilitychange", () => { if (!document.hidden) tick(); });
+    window.addEventListener("pageshow", tick);
+    let fadeTimer;
+    function revealButton() {
+      controls.classList.remove('hidden');
+      clearTimeout(fadeTimer);
+      fadeTimer = setTimeout(() => controls.classList.add('hidden'), 2500);
+    }
+    document.addEventListener('pointermove', revealButton);
+    document.addEventListener('pointerdown', revealButton);
+    document.addEventListener('keydown', revealButton);
+    document.addEventListener('fullscreenchange', () => {
+      button.textContent = document.fullscreenElement ? 'Exit fullscreen' : 'Enter fullscreen';
+      revealButton();
+    });
+    button.addEventListener('click', async () => {
+      try {
+        if (document.fullscreenElement) await document.exitFullscreen();
+        else await document.documentElement.requestFullscreen();
+      } catch {
+        button.textContent = 'Use Brave’s View → Enter Full Screen';
+      }
+      revealButton();
+    });
+    if (!document.fullscreenEnabled) button.hidden = true;
+    const status = document.getElementById('offline-status');
+    if ('serviceWorker' in navigator && /^https?:$/.test(location.protocol)) {
+      status.textContent = 'Preparing offline fonts…';
+      navigator.serviceWorker.register('./sw.js', {scope: './'}).then(reg => {
+        const ready = () => { status.textContent = 'Ready offline · all fonts saved'; };
+        if (reg.active) ready();
+        const watch = worker => worker?.addEventListener('statechange', () => {
+          if (worker.state === 'activated') ready();
+          if (worker.state === 'redundant' && !reg.active) status.textContent = 'Offline setup failed · reload online to retry';
+        });
+        watch(reg.installing);
+        reg.addEventListener('updatefound', () => watch(reg.installing));
+      }).catch(() => { status.textContent = 'Offline unavailable · clock still works online'; });
+    }
+    revealButton();
+  </script>
+</body>
+</html>
